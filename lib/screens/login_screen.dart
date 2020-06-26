@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
+import 'package:selectionphobiamobile/networking/login.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -7,6 +10,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  String username = null;
+  String password = null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +49,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextFormField(
                     cursorColor: pinkColor,
                     decoration: InputDecoration(
-
                       labelText: 'Username',
                       focusColor: Colors.red,
                       labelStyle: TextStyle(
@@ -57,12 +63,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderSide: BorderSide(color: pinkColor),
                       ),
                     ),
-                    onSaved: (String value) {
-                      // This optional block of code can be used to run
-                      // code when the user saves the form.
-                    },
-                    validator: (String value) {
-                      return value.contains('@') ? 'Do not use the @ char.' : null;
+                    onChanged:(String value){
+                      username = value;
                     },
                   ),
                   TextFormField(
@@ -83,12 +85,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderSide: BorderSide(color: pinkColor),
                       ),
                     ),
-                    onSaved: (String value) {
-                      // This optional block of code can be used to run
-                      // code when the user saves the form.
-                    },
-                    validator: (String value) {
-                      return value.contains('@') ? 'Do not use the @ char.' : null;
+                    onChanged:(String value){
+                      password = value;
                     },
                   ),
                   SizedBox(
@@ -112,21 +110,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: pinkColor,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        'Login',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Lato',
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 30,
+                  GestureDetector(
+                    onTap: () async {
+                      //Send to networking page
+                      var token = await loginPost(username, password);
+                      print(token);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: pinkColor,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(12),
+                        child: Text(
+                          'Login',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Lato',
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 30,
+                          ),
                         ),
                       ),
                     ),
