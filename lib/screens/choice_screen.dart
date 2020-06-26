@@ -15,7 +15,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
         child: Container(
           color: Colors.white,
           child: Padding(
-            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
             child: Column(
               children: <Widget>[
                 Row(
@@ -82,12 +82,154 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     ),
                   ],
                 ),
-                Text(
-                    'Some Phobia',
-                  style: TextStyle(
-                    
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Some Phobia',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.w900,
+                        fontSize: 40,
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: mainColor,
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(20, 10, 10, 0),
+                              child: Text(
+
+                                'Take the money',
+                                style: TextStyle(
+
+                                  color: Colors.black,
+                                  fontFamily: 'Lato',
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: mainColor,
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(20, 10, 10, 0),
+                              child: Text(
+
+                                'Take the money',
+                                style: TextStyle(
+
+                                  color: Colors.black,
+                                  fontFamily: 'Lato',
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: mainColor,
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(20, 10, 10, 0),
+                              child: Text(
+
+                                'Take the money',
+                                style: TextStyle(
+
+                                  color: Colors.black,
+                                  fontFamily: 'Lato',
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: mainColor,
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(20, 10, 10, 0),
+                              child: Text(
+
+                                'Take the money',
+                                style: TextStyle(
+
+                                  color: Colors.black,
+                                  fontFamily: 'Lato',
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+
+
               ],
             ),
           ),
