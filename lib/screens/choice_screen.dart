@@ -227,9 +227,6 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     ),
                   ),
                 ),
-
-
-
               ],
             ),
           ),
