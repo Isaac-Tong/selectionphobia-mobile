@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
 import 'myposts_pageview.dart';
+import 'trendingposts_listview.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,12 +10,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: pinkColor,
+      ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(30),
+          padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
           child: Column(
             children: <Widget>[
               Row(
@@ -22,11 +28,24 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     child: Row(
                       children: <Widget>[
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundImage:
-                              AssetImage('assets/images/prof-pic-temp.jpg'),
+                        Container(
+                          width: 50,
+                          height: 50,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: FittedBox(
+                              fit: BoxFit.fill,
+                              child: Image(
+                                image: AssetImage('./assets/images/prof-pic-temp.jpg'),
+                              ),
+                            ),
+                          ),
                         ),
+//                        CircleAvatar(
+//                          radius: 30,
+//                          backgroundImage:
+//                              AssetImage('assets/images/prof-pic-temp.jpg'),
+//                        ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                           child: Text(
@@ -48,7 +67,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 10,
+              ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                textBaseline: TextBaseline.ideographic,
                 children: <Widget>[
                   Text(
                     'My posts',
@@ -58,10 +83,20 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  Text(
+                    'View All',
+                    style: TextStyle(
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.bold,
+                      color: pinkColor,
+                    ),
+                  ),
                 ],
               ),
-              Expanded(
-                  child: MyPostPageView()),
+              Expanded(flex: 4, child: MyPostPageView()),
+              SizedBox(
+                height: 10,
+              ),
               Row(
                 children: <Widget>[
                   Text(
@@ -74,7 +109,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              Expanded(flex: 3),
+              SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                flex: 8,
+                child: TrendingPosts(),
+              ),
             ],
           ),
         ),
