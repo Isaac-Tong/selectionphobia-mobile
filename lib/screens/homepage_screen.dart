@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
 import 'myposts_pageview.dart';
 import 'trendingposts_listview.dart';
+import 'package:selectionphobiamobile/networking/homepage.dart';
 
 
 class HomePage extends StatefulWidget {
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -41,11 +43,6 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-//                        CircleAvatar(
-//                          radius: 30,
-//                          backgroundImage:
-//                              AssetImage('assets/images/prof-pic-temp.jpg'),
-//                        ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                           child: Text(
