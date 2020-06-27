@@ -3,6 +3,7 @@ import 'package:selectionphobiamobile/constants.dart';
 import 'myposts_pageview.dart';
 import 'trendingposts_listview.dart';
 import 'package:selectionphobiamobile/networking/homepage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -12,6 +13,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //Access shared preferences
+  }
 
   @override
   Widget build(BuildContext context) {

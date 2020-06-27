@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
 import 'package:selectionphobiamobile/networking/login.dart';
+import 'package:selectionphobiamobile/screens/homepage_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -113,8 +114,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: () async {
                       //Send to networking page
-                      var token = await loginPost(username, password);
-                      print(token);
+                      loginPost(username, password);
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                            (Route<dynamic> route) => false,
+                      );
                     },
                     child: Container(
                       decoration: BoxDecoration(

@@ -22,6 +22,7 @@ class _MyPostPageViewState extends State<MyPostPageView> {
     initialVar = null;
     //Call this async function to display text for the carousel.
     getRecentQuestions();
+
   }
 
   void getRecentQuestions() async{
@@ -44,6 +45,7 @@ class _MyPostPageViewState extends State<MyPostPageView> {
           initialPage: 15,
           disableCenter: false,
           enableInfiniteScroll: true,
+          enlargeCenterPage: true,
         ),
         itemCount: 7,
         itemBuilder: (BuildContext context, int itemIndex) {
