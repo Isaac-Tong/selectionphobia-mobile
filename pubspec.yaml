@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  platform_alert_dialog: ^1.0.0+2
   shared_preferences: ^0.5.7+3
   shimmer: ^1.1.1
   carousel_slider: ^2.2.1

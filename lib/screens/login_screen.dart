@@ -12,8 +12,13 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
+
+
+
+
   String username = null;
   String password = null;
+  bool _visible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +52,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      AnimatedOpacity(
+                        opacity: _visible?1:0,
+                        duration: Duration(milliseconds: 200),
+                        child: Text(
+                          'Wrong username/password',
+                          style: TextStyle(
+                            fontFamily: 'Lato',
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   TextFormField(
                     cursorColor: pinkColor,
                     decoration: InputDecoration(
@@ -70,8 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextFormField(
                     cursorColor: pinkColor,
+                    obscureText: true,
                     decoration: InputDecoration(
-
                       labelText: 'Password',
                       focusColor: Colors.red,
                       labelStyle: TextStyle(
@@ -93,7 +115,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  //TODO:
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
@@ -114,12 +135,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: () async {
                       //Send to networking page
-                      loginPost(username, password);
+                      try{
+                        await loginPost(username, password);
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(builder: (context) => HomePage()),
                             (Route<dynamic> route) => false,
                       );
+                      }catch(e){
+                        print('error');
+                        setState(() {
+                          _visible = true;
+                          Future.delayed(const Duration(milliseconds: 3000), () {
+                            setState(() {
+                              _visible = false;
+                            });
+                          });
+                        });
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
