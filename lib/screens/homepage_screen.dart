@@ -4,6 +4,7 @@ import 'myposts_pageview.dart';
 import 'trendingposts_listview.dart';
 import 'package:selectionphobiamobile/networking/homepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'askQuestion_screen.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -23,8 +24,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.question_answer),
+        label: Text('Ask'),
         backgroundColor: pinkColor,
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AskQuestion()),
+          );
+        },
       ),
       body: SafeArea(
         child: Padding(
@@ -123,6 +132,18 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text(''),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text(''),
+          ),
+        ],
       ),
     );
   }
