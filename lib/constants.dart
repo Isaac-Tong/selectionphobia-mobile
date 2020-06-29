@@ -6,6 +6,12 @@ const pinkColor = Color(0xffe5708f);
 const darkblueColor = Color(0xff1F92BF);
 const lightblueColor = Color(0xffc0e4e9);
 
+//Question Colours
+const askturquoiseColor = Color(0xff1fbebf);
+const askblueColor = Color(0xff0F78F2);
+const askredColor = Color(0xffF55D4F);
+const askpurpleColor = Color(0xff8832BF);
+
 //Random Colours
 const pastelorangeColor = Color(0xffefe2c9);
 const pastelgreenColor = Color(0xffd9dfb2);
