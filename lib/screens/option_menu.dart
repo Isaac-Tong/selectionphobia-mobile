@@ -39,10 +39,28 @@ class OptionMenu extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Expanded(
+                flex: 3,
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(20, 20, 0, 20),
+                  child: Text(
+                    optionText,
+                  ),
+                ),
+              ),
+              Expanded(
                 flex: 1,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      width: 3,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.redAccent,
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                      ),
+                    ),
                     GestureDetector(
                       onTap: () {
                         print('he');
@@ -58,25 +76,7 @@ class OptionMenu extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      width: 3,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.redAccent,
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                      ),
-                    ),
                   ],
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(0, 20, 20, 20),
-                  child: Text(
-                    optionText,
-                  ),
                 ),
               ),
             ],

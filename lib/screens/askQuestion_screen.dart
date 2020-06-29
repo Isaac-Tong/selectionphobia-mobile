@@ -23,6 +23,7 @@ class _AskQuestionState extends State<AskQuestion> {
   String question = '';
   String description = '';
   String currentOption;
+  List allOptions = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,7 @@ class _AskQuestionState extends State<AskQuestion> {
         child: Icon(Icons.send),
         backgroundColor: darkblueColor,
         onPressed: (){
-          askQuestion(question, description);
+          askQuestion(question, description, allOptions);
         },
       ),
       body: SingleChildScrollView(
@@ -208,6 +209,7 @@ class _AskQuestionState extends State<AskQuestion> {
                                   optionMenu.add(
                                     OptionMenu(currentOption)
                                   );
+                                  allOptions.add(currentOption);
                                 });
                               },
                               child: Text(

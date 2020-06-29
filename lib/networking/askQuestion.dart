@@ -2,8 +2,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void askQuestion(String question, String description) async {
+void askQuestion(String question, String description, List allOptions) async {
 
+
+  print(allOptions);
   //Get the token from shared preferences
   SharedPreferences prefs = await SharedPreferences.getInstance();
   //Get the token
@@ -20,9 +22,10 @@ void askQuestion(String question, String description) async {
   http.Response res = await http.post(
     'http://10.0.2.2:5000/ask',
     headers: headerMap,
-      body: jsonEncode(<String, String>{
+      body: jsonEncode({
         'title': question,
         'description': description,
+        'options': allOptions,
       })
   );
 
