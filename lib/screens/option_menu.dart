@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
+import 'package:selectionphobiamobile/screens/askQuestion_screen.dart';
 
 class OptionMenu extends StatelessWidget {
 
@@ -63,7 +64,6 @@ class OptionMenu extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        print('he');
                       },
                       child: Text(
                         'Remove',
