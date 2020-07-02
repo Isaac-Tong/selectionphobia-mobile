@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
+import 'package:selectionphobiamobile/networking/create.dart';
+import 'package:selectionphobiamobile/screens/homepage_screen.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -9,6 +11,7 @@ class CreateAccount extends StatefulWidget {
 class _CreateAccountState extends State<CreateAccount> {
   String username = null;
   String password = null;
+  String email = null;
 
   @override
   Widget build(BuildContext context) {
@@ -83,13 +86,14 @@ class _CreateAccountState extends State<CreateAccount> {
                   ),
                 ),
                 onChanged:(String value){
-                  username = value;
+                  email = value;
                 },
               ),
               SizedBox(
                 height: 5,
               ),
               TextFormField(
+                obscureText: true,
                 cursorColor: darkblueColor,
                 decoration: InputDecoration(
                   labelText: 'Password',
@@ -107,7 +111,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   ),
                 ),
                 onChanged:(String value){
-                  username = value;
+                  password = value;
                 },
               ),
               SizedBox(
@@ -118,7 +122,11 @@ class _CreateAccountState extends State<CreateAccount> {
                 children: <Widget>[
                   GestureDetector(
                     onTap: () async {
-
+                      await createPost(username, password, email);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
                     },
                     child: Container(
                       decoration: BoxDecoration(

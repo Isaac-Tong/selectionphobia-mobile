@@ -108,6 +108,8 @@ class _AskQuestionState extends State<AskQuestion> {
   String question = '';
   String description = '';
   String currentOption;
+
+  //allOptions
   List allOptions = [];
 
 
