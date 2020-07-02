@@ -19,3 +19,4 @@ const pastelblueColor = Color(0xffd1d9ef);
 const pastelpinkColor = Color(0xffeedfe8);
 const greyColor = Color(0xffa5a5a5);
 const gradientColor = Color(0xffF1F5FA);
+

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
 import 'package:selectionphobiamobile/networking/login.dart';
 import 'package:selectionphobiamobile/screens/homepage_screen.dart';
+import 'package:selectionphobiamobile/screens/createAccount.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -29,7 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Padding(
               padding: EdgeInsets.all(40),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Row(
@@ -132,59 +132,72 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  GestureDetector(
-                    onTap: () async {
-                      //Send to networking page
-                      try{
-                        await loginPost(username, password);
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                            (Route<dynamic> route) => false,
-                      );
-                      }catch(e){
-                        print('error');
-                        setState(() {
-                          _visible = true;
-                          Future.delayed(const Duration(milliseconds: 3000), () {
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () async {
+                          //Send to networking page
+                          try{
+                            await loginPost(username, password);
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomePage()),
+                                (Route<dynamic> route) => false,
+                          );
+                          }catch(e){
+                            print('error');
                             setState(() {
-                              _visible = false;
+                              _visible = true;
+                              Future.delayed(const Duration(milliseconds: 3000), () {
+                                setState(() {
+                                  _visible = false;
+                                });
+                              });
                             });
-                          });
-                        });
-                      }
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: pinkColor,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          'Login',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'Lato',
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 30,
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: pinkColor,
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(12),
+                            child: Text(
+                              'Login',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Lato',
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 30,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    'Create an account',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Lato',
-                      color: darkblueColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20,
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CreateAccount()),
+                      );
+                    },
+                    child: Text(
+                      'Create an account',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Lato',
+                        color: darkblueColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                 ],
