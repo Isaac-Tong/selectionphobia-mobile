@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
 import 'package:selectionphobiamobile/networking/askQuestion.dart';
@@ -14,7 +13,7 @@ class _AskQuestionState extends State<AskQuestion> {
 
 
   //Call this function to create a new option menu
-  Widget createOptionMenu(String optionText){
+  Widget createOptionMenu(String optionText, int counter){
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: ConstrainedBox(
@@ -66,9 +65,7 @@ class _AskQuestionState extends State<AskQuestion> {
                     MaterialButton(
                       onPressed: () {
                         setState(() {
-
-
-                          optionMenu.removeLast();
+                          optionMenu.removeAt(counter);
                         });
                       },
                       child: Text(
@@ -105,11 +102,13 @@ class _AskQuestionState extends State<AskQuestion> {
   }
 
 
+  int optionMenuCounter = 0;
+
   String question = '';
   String description = '';
   String currentOption;
 
-  //allOptions
+  //The array of options
   List allOptions = [];
 
 
@@ -296,9 +295,10 @@ class _AskQuestionState extends State<AskQuestion> {
                                 //Add a new list
                                 setState(() {
                                   optionMenu.add(
-                                    createOptionMenu(currentOption)
+                                    createOptionMenu(currentOption, optionMenuCounter)
                                   );
                                   allOptions.add(currentOption);
+                                  optionMenuCounter++;
                                 });
                               },
                               child: Text(
