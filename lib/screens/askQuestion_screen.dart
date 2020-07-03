@@ -12,6 +12,7 @@ class AskQuestion extends StatefulWidget {
 class _AskQuestionState extends State<AskQuestion> {
 
   //TEST PAGE
+  List cards = ['ABCDEFG', 'HIJKLMNOP', 'HIJKLMNOP'];
 
 
   //Call this function to create a new option menu
@@ -322,13 +323,87 @@ class _AskQuestionState extends State<AskQuestion> {
                 Column(
                   children: _createChildren(),
                 ),
-                ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Dismissible(
-                      key: Key
-                    );
-                  },
+                Container(
+                  height: 500,
+                  child: ListView.builder(
+                    itemCount: cards.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight: 70,
+                            minWidth: double.infinity,
+                            maxHeight: 150,
+                            maxWidth: double.infinity,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.1),
+                                  spreadRadius: 2,
+                                  blurRadius: 6,
+                                  offset: Offset(3, 3), // changes position of shadow
+                                ),
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(8)),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                                    child: Text(
+                                      cards[index],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      Container(
+                                        margin: EdgeInsets.symmetric(vertical: 10),
+                                        width: 3,
+                                        height: 60,
+                                        decoration: BoxDecoration(
+                                          color: Colors.redAccent,
+                                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                                        ),
+                                      ),
+                                      MaterialButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            cards.removeAt(index);
+
+                                          });
+                                        },
+                                        child: Text(
+                                          'Remove',
+
+                                          style: TextStyle(
+                                            fontFamily: 'Lato',
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 15,
+                                            color: Colors.redAccent,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
