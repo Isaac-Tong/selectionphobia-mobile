@@ -96,12 +96,18 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    'View All',
-                    style: TextStyle(
-                      fontFamily: 'Lato',
-                      fontWeight: FontWeight.bold,
-                      color: pinkColor,
+                  InkWell(
+                    onTap: () {
+
+                    },
+                    child: Text(
+                      'View All',
+                      style: TextStyle(
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: pinkColor,
+                      ),
                     ),
                   ),
                 ],

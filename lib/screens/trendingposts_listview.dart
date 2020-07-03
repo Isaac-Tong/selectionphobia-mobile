@@ -12,7 +12,6 @@ class _TrendingPostsState extends State<TrendingPosts> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () {
-
       },
       child: ListView.builder(
           itemCount: 10,

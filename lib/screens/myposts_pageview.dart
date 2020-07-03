@@ -47,7 +47,7 @@ class _MyPostPageViewState extends State<MyPostPageView> {
           enableInfiniteScroll: true,
           enlargeCenterPage: true,
         ),
-        itemCount: 7,
+        itemCount: 2,
         itemBuilder: (BuildContext context, int itemIndex) {
           return Container(
             margin: EdgeInsets.all(5),
