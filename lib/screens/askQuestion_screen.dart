@@ -12,7 +12,7 @@ class AskQuestion extends StatefulWidget {
 class _AskQuestionState extends State<AskQuestion> {
 
   //TEST PAGE
-  List cards = ['ABCDEFG', 'HIJKLMNOP', 'HIJKLMNOP'];
+  List cards = [];
 
 
   //Call this function to create a new option menu
@@ -123,6 +123,7 @@ class _AskQuestionState extends State<AskQuestion> {
         backgroundColor: darkblueColor,
         onPressed: (){
           askQuestion(question, description, allOptions);
+          Navigator.pop(context);
         },
       ),
       body: SingleChildScrollView(
@@ -297,11 +298,12 @@ class _AskQuestionState extends State<AskQuestion> {
                               onPressed: () {
                                 //Add a new list
                                 setState(() {
-                                  optionMenu.add(
-                                    createOptionMenu(currentOption, optionMenuCounter)
-                                  );
-                                  allOptions.add(currentOption);
-                                  optionMenuCounter++;
+                                  cards.add(currentOption);
+//                                  optionMenu.add(
+//                                    createOptionMenu(currentOption, optionMenuCounter)
+//                                  );
+//                                  allOptions.add(currentOption);
+//                                  optionMenuCounter++;
                                 });
                               },
                               child: Text(
