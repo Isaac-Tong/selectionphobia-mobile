@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
           child: SingleChildScrollView(
             physics: AlwaysScrollableScrollPhysics(),
             child: Container(
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
               child: Padding(
                 padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                 child: Column(
@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       children: <Widget>[
                         Text(
-                          'Trending Posts',
+                          'New Posts',
                           style: TextStyle(
                             fontFamily: 'Lato',
                             fontSize: 30,
@@ -168,18 +168,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text(''),
-          ),
-        ],
       ),
     );
   }

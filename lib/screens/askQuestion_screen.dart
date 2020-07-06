@@ -114,6 +114,7 @@ class _AskQuestionState extends State<AskQuestion> {
   //The array of options
   List allOptions = [];
 
+  TextEditingController optionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -174,6 +175,7 @@ class _AskQuestionState extends State<AskQuestion> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: TextField(
+                      controller: optionController,
                       onChanged: (value) {
                         question = value;
                       },
@@ -298,12 +300,11 @@ class _AskQuestionState extends State<AskQuestion> {
                               onPressed: () {
                                 //Add a new list
                                 setState(() {
+                                  if(currentOption == null || currentOption == ''){
+                                    return;
+                                  }
+                                  optionController.clear;
                                   cards.add(currentOption);
-//                                  optionMenu.add(
-//                                    createOptionMenu(currentOption, optionMenuCounter)
-//                                  );
-//                                  allOptions.add(currentOption);
-//                                  optionMenuCounter++;
                                 });
                               },
                               child: Text(
@@ -326,8 +327,9 @@ class _AskQuestionState extends State<AskQuestion> {
                   children: _createChildren(),
                 ),
                 Container(
-                  height: 500,
                   child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
                     itemCount: cards.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
