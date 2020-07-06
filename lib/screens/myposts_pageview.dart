@@ -4,7 +4,74 @@ import 'package:selectionphobiamobile/constants.dart';
 import '../networking/homepage.dart';
 import 'package:shimmer/shimmer.dart';
 
+//class MyPostPageView extends StatefulWidget {
+//  @override
+//  _MyPostPageViewState createState() => _MyPostPageViewState();
+//}
+//
+//class _MyPostPageViewState extends State<MyPostPageView> {
+//
+//  //VARIABLES
+//  Map questionMap;
+//  var initialVar;
+//  //CALL WHEN INIT STATE
+//  @override
+//  void initState() {
+//    super.initState();
+//    //Set it to null to set shimmering effect
+//    initialVar = null;
+//    //Call this async function to display text for the carousel.
+//    getRecentQuestions();
+//
+//  }
+//
+//  void getRecentQuestions() async{
+//    questionMap = await recentQuestionsGet();
+//    print(questionMap['questions'][0]['totalVotes']);
+//    setState(() {
+//      initialVar = questionMap;
+//    });
+//  }
+//
+//
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return Scaffold(
+//      body: CarouselSlider.builder(
+//        options: CarouselOptions(
+//          viewportFraction: 0.5,
+//          height: double.infinity,
+//          initialPage: 15,
+//          disableCenter: false,
+//          enableInfiniteScroll: true,
+//          enlargeCenterPage: true,
+//        ),
+//        itemCount: 2,
+//        itemBuilder: (BuildContext context, int itemIndex) {
+//          return Container(
+//            margin: EdgeInsets.all(5),
+//            width: double.infinity,
+//            decoration: BoxDecoration(
+//              borderRadius: BorderRadius.all(Radius.circular(8)),
+//              color: lightblueColor,
+//            ),
+//            child: Padding(
+//              padding: EdgeInsets.all(12),
+//              child: ShimmerPage(initialVar, itemIndex),
+//            ),
+//          );
+//        },
+//      ),
+//    );
+//  }
+//}
+
+
 class MyPostPageView extends StatefulWidget {
+  final initialVar;
+  MyPostPageView(this.initialVar);
+
   @override
   _MyPostPageViewState createState() => _MyPostPageViewState();
 }
@@ -21,44 +88,37 @@ class _MyPostPageViewState extends State<MyPostPageView> {
     //Set it to null to set shimmering effect
     initialVar = null;
     //Call this async function to display text for the carousel.
-    getRecentQuestions();
+//    getRecentQuestions();
 
   }
 
-  void getRecentQuestions() async{
-    questionMap = await recentQuestionsGet();
-    print(questionMap['questions'][0]['totalVotes']);
-    setState(() {
-      initialVar = questionMap;
-    });
-  }
+//  void getRecentQuestions() async{
+//    questionMap = await recentQuestionsGet();
+//    print(questionMap['questions'][0]['totalVotes']);
+//    setState(() {
+//      initialVar = questionMap;
+//    });
+//  }
 
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CarouselSlider.builder(
-        options: CarouselOptions(
-          viewportFraction: 0.5,
-          height: double.infinity,
-          initialPage: 15,
-          disableCenter: false,
-          enableInfiniteScroll: true,
-          enlargeCenterPage: true,
-        ),
-        itemCount: 2,
+      body: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 7,
         itemBuilder: (BuildContext context, int itemIndex) {
           return Container(
             margin: EdgeInsets.all(5),
-            width: double.infinity,
+            width: 180,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(8)),
               color: lightblueColor,
             ),
             child: Padding(
               padding: EdgeInsets.all(12),
-              child: ShimmerPage(initialVar, itemIndex),
+              child: ShimmerPage(widget.initialVar, itemIndex),
             ),
           );
         },

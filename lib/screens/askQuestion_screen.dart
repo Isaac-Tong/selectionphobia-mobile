@@ -122,7 +122,7 @@ class _AskQuestionState extends State<AskQuestion> {
         child: Icon(Icons.send),
         backgroundColor: darkblueColor,
         onPressed: (){
-          askQuestion(question, description, allOptions);
+          askQuestion(question, description, cards);
           Navigator.pop(context);
         },
       ),
