@@ -82,13 +82,15 @@ class _VoteScreenState extends State<VoteScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                Text(
-                                  'Option 2',
-                                  style: TextStyle(
-                                    color: darkblueColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
-                                    fontFamily: 'Lato',
+                                Flexible(
+                                  child: Text(
+                                    'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
+                                    style: TextStyle(
+                                      color: darkblueColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17,
+                                      fontFamily: 'Lato',
+                                    ),
                                   ),
                                 ),
                               ],
@@ -96,134 +98,27 @@ class _VoteScreenState extends State<VoteScreen> {
                             SizedBox(
                               height: 12,
                             ),
-                            LinearPercentIndicator(
-                              lineHeight: 14,
-                              percent: 0.2,
-                              backgroundColor: Colors.grey,
-                              progressColor: lightLightBlueColor,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: gradientColor,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        child: Column(
-                          children: <Widget>[
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                Text(
-                                  'Option 3',
-                                  style: TextStyle(
-                                    color: darkblueColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
-                                    fontFamily: 'Lato',
+                                Expanded(
+                                  child: LinearPercentIndicator(
+                                    lineHeight: 14,
+                                    percent: 0.8,
+                                    backgroundColor: Colors.grey,
+                                    progressColor: lightLightBlueColor,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: Text(
+                                    '50%',
+                                    style: TextStyle(
+                                      fontFamily: 'Lato',
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ],
-                            ),
-                            SizedBox(
-                              height: 12,
-                            ),
-                            LinearPercentIndicator(
-                              lineHeight: 14,
-                              percent: 1,
-                              backgroundColor: Colors.grey,
-                              progressColor: lightLightBlueColor,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: gradientColor,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  'Option 4',
-                                  style: TextStyle(
-                                    color: darkblueColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
-                                    fontFamily: 'Lato',
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 12,
-                            ),
-                            LinearPercentIndicator(
-                              lineHeight: 14,
-                              percent: 0.5,
-                              backgroundColor: Colors.grey,
-                              progressColor: lightLightBlueColor,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: gradientColor,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  'Option 1',
-                                  style: TextStyle(
-                                    color: darkblueColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
-                                    fontFamily: 'Lato',
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 12,
-                            ),
-                            LinearPercentIndicator(
-                              lineHeight: 14,
-                              percent: 0.8,
-                              backgroundColor: Colors.grey,
-                              progressColor: lightLightBlueColor,
                             ),
                           ],
                         ),
