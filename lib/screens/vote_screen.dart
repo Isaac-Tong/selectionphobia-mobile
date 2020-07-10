@@ -149,14 +149,9 @@ class OptionCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(10),
-              ),
-              border: Border.all(
-                color: borderColor,
-                width: 8,
               ),
               color: gradientColor,
             ),
@@ -168,6 +163,15 @@ class OptionCard extends StatelessWidget {
                 onTap: () {
                 },
                 child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    border: Border.all(
+                      color: borderColor,
+                      width: 8,
+                    ),
+                  ),
                   padding: EdgeInsets.all(12),
                   child: Column(
                     children: <Widget>[
