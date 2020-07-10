@@ -9,6 +9,8 @@ class VoteScreen extends StatefulWidget {
 }
 
 class _VoteScreenState extends State<VoteScreen> {
+  
+  String questionId = '5f081b63758ed65a0562d264';
   String title = ' ';
   String description = ' ';
   int cardCount;
@@ -16,22 +18,19 @@ class _VoteScreenState extends State<VoteScreen> {
   int totalVotes = 0;
   int userVoteOption;
   List percentageList = [];
-  @override
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          Map questionResponse = await getQuestionById('5f07ccd8a530bde30c48c05f');
+          response = await getQuestionById(questionId);
           setState(() {
-            totalVotes = questionResponse['totalVotes'];
-            response = questionResponse;
-            title = questionResponse['title'];
-            description = questionResponse['description'];
-            cardCount = questionResponse['options'].length;
-            userVoteOption = questionResponse['userVoteOption'];
+            totalVotes = response['totalVotes'];
+            title = response['title'];
+            description = response['description'];
+            cardCount = response['options'].length;
+            userVoteOption = response['userVoteOption'];
           });
         },
       ),
@@ -102,11 +101,116 @@ class _VoteScreenState extends State<VoteScreen> {
                   child: ListView.builder(
                     itemCount: cardCount,
                     itemBuilder: (context, index){
-                      //Special case if user selected it
-                      if(index == userVoteOption){
-                        return OptionCard(response['options'][index]['name'], response['options'][index]['votes'], totalVotes, true);
+                      String name = response['options'][index]['name'];
+                      int votes = response['options'][index]['votes'];
+                      int percentage;
+                      double indicatorPercentage;
+                      Color borderColor = Colors.transparent;
+                      if(totalVotes == 0){
+                        percentage = 0;
+                        indicatorPercentage = 0;
+                      }else{
+                        percentage = ((votes / totalVotes) * 100).round();;
+                        indicatorPercentage = votes / totalVotes;
                       }
-                      return OptionCard(response['options'][index]['name'], response['options'][index]['votes'], totalVotes);
+                      if(index == userVoteOption){
+                          borderColor = opaquelightLightBlueColor;
+                      }
+
+                      return Padding(
+                        padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                color: gradientColor,
+                              ),
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+//                splashColor: opaquelightLightBlueColor,
+                                  borderRadius: BorderRadius.circular(10),
+                                  onTap: () async {
+
+                                    //POST TO BACKEND ON /VOTEUNVOTE
+                                    int statusCode = await voteUnvote(questionId, index);
+                                    response = await getQuestionById(questionId);
+                                    setState((){
+                                      totalVotes = response['totalVotes'];
+                                      title = response['title'];
+                                      description = response['description'];
+                                      cardCount = response['options'].length;
+                                      userVoteOption = response['userVoteOption'];
+                                    });
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                      border: Border.all(
+                                        color: borderColor,
+                                        width: 8,
+                                      ),
+                                    ),
+                                    padding: EdgeInsets.all(12),
+                                    child: Column(
+                                      children: <Widget>[
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: <Widget>[
+                                            Flexible(
+                                              child: Text(
+                                                name,
+                                                style: TextStyle(
+                                                  color: darkblueColor,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 17,
+                                                  fontFamily: 'Lato',
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 12,
+                                        ),
+                                        Row(
+                                          children: <Widget>[
+                                            Expanded(
+                                              child: LinearPercentIndicator(
+                                                animation: true,
+                                                animationDuration: 300,
+                                                lineHeight: 14,
+                                                percent: indicatorPercentage,
+                                                backgroundColor: Colors.grey,
+                                                progressColor: lightLightBlueColor,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                              child: Text(
+                                                percentage.toString() + '%',
+                                                style: TextStyle(
+                                                  fontFamily: 'Lato',
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -114,117 +218,6 @@ class _VoteScreenState extends State<VoteScreen> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class OptionCard extends StatelessWidget {
-  String name;
-  int percentage;
-  double indicatorPercentage;
-  bool isUserVoted;
-  Color borderColor = Colors.transparent;
-
-  OptionCard(String name, int votes, int totalVotes, [bool isUserVoted]){
-    this.name = name;
-
-    if(isUserVoted == true){
-      borderColor = opaquelightLightBlueColor;
-    }
-
-    if(totalVotes == 0){
-      this.indicatorPercentage = 0;
-      this.percentage = 0;
-      return;
-    }
-    this.indicatorPercentage = votes / totalVotes;
-    this.percentage = ((votes / totalVotes) * 100).round();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-      child: Column(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(10),
-              ),
-              color: gradientColor,
-            ),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-//                splashColor: opaquelightLightBlueColor,
-                borderRadius: BorderRadius.circular(10),
-                onTap: () {
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                    border: Border.all(
-                      color: borderColor,
-                      width: 8,
-                    ),
-                  ),
-                  padding: EdgeInsets.all(12),
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Flexible(
-                            child: Text(
-                              name,
-                              style: TextStyle(
-                                color: darkblueColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                                fontFamily: 'Lato',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: LinearPercentIndicator(
-                              animation: true,
-                              animationDuration: 300,
-                              lineHeight: 14,
-                              percent: indicatorPercentage,
-                              backgroundColor: Colors.grey,
-                              progressColor: lightLightBlueColor,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                            child: Text(
-                              percentage.toString() + '%',
-                              style: TextStyle(
-                                fontFamily: 'Lato',
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
