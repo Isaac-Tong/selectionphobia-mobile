@@ -21,5 +21,8 @@ const pastelpinkColor = Color(0xffeedfe8);
 const greyColor = Color(0xffa5a5a5);
 const gradientColor = Color(0xffF1F5FA);
 
+//Opaque Colours
+const opaquelightLightBlueColor = Color(0x9969DBF5);
+const opaquegradientColor = Color(0xaaF1F5FA);
 
 

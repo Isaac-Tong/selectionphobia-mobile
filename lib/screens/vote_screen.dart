@@ -135,57 +135,69 @@ class OptionCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(20),
+
             decoration: BoxDecoration(
-              color: gradientColor,
               borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: gradientColor,
             ),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Flexible(
-                      child: Text(
-                        name,
-                        style: TextStyle(
-                          color: darkblueColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17,
-                          fontFamily: 'Lato',
-                        ),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+//                splashColor: opaquelightLightBlueColor,
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {
+                },
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Flexible(
+                            child: Text(
+                              name,
+                              style: TextStyle(
+                                color: darkblueColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                                fontFamily: 'Lato',
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: LinearPercentIndicator(
-                        animation: true,
-                        animationDuration: 300,
-                        lineHeight: 14,
-                        percent: indicatorPercentage,
-                        backgroundColor: Colors.grey,
-                        progressColor: lightLightBlueColor,
+                      SizedBox(
+                        height: 12,
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Text(
-                        percentage.toString() + '%',
-                        style: TextStyle(
-                          fontFamily: 'Lato',
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: LinearPercentIndicator(
+                              animation: true,
+                              animationDuration: 300,
+                              lineHeight: 14,
+                              percent: indicatorPercentage,
+                              backgroundColor: Colors.grey,
+                              progressColor: lightLightBlueColor,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            child: Text(
+                              percentage.toString() + '%',
+                              style: TextStyle(
+                                fontFamily: 'Lato',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
           ),
         ],
