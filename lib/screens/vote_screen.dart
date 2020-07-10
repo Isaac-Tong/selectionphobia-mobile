@@ -14,6 +14,7 @@ class _VoteScreenState extends State<VoteScreen> {
   int cardCount;
   Map response;
   int totalVotes = 0;
+  int userVoteOption;
   List percentageList = [];
   @override
 
@@ -23,13 +24,14 @@ class _VoteScreenState extends State<VoteScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          Map questionResponse = await getQuestionById('5efa38c7194f32630007a074');
+          Map questionResponse = await getQuestionById('5f07ccd8a530bde30c48c05f');
           setState(() {
             totalVotes = questionResponse['totalVotes'];
             response = questionResponse;
             title = questionResponse['title'];
             description = questionResponse['description'];
             cardCount = questionResponse['options'].length;
+            userVoteOption = questionResponse['userVoteOption'];
           });
         },
       ),
@@ -66,12 +68,14 @@ class _VoteScreenState extends State<VoteScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      description,
-                      style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 17,
-                        fontFamily: 'Lato',
+                    Flexible(
+                      child: Text(
+                        description,
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 17,
+                          fontFamily: 'Lato',
+                        ),
                       ),
                     ),
                   ],
@@ -98,6 +102,10 @@ class _VoteScreenState extends State<VoteScreen> {
                   child: ListView.builder(
                     itemCount: cardCount,
                     itemBuilder: (context, index){
+                      //Special case if user selected it
+                      if(index == userVoteOption){
+                        return OptionCard(response['options'][index]['name'], response['options'][index]['votes'], totalVotes, true);
+                      }
                       return OptionCard(response['options'][index]['name'], response['options'][index]['votes'], totalVotes);
                     },
                   ),
@@ -115,9 +123,15 @@ class OptionCard extends StatelessWidget {
   String name;
   int percentage;
   double indicatorPercentage;
+  bool isUserVoted;
+  Color borderColor = Colors.transparent;
 
-  OptionCard(String name, int votes, int totalVotes){
+  OptionCard(String name, int votes, int totalVotes, [bool isUserVoted]){
     this.name = name;
+
+    if(isUserVoted == true){
+      borderColor = opaquelightLightBlueColor;
+    }
 
     if(totalVotes == 0){
       this.indicatorPercentage = 0;
@@ -137,7 +151,13 @@ class OptionCard extends StatelessWidget {
           Container(
 
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+              border: Border.all(
+                color: borderColor,
+                width: 8,
+              ),
               color: gradientColor,
             ),
             child: Material(
@@ -148,7 +168,7 @@ class OptionCard extends StatelessWidget {
                 onTap: () {
                 },
                 child: Container(
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(12),
                   child: Column(
                     children: <Widget>[
                       Row(
