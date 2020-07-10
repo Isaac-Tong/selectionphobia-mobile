@@ -16,7 +16,7 @@ void askQuestion(String question, String description, List cards) async {
     "platform": "mobile",
     'Content-Type': 'application/json; charset=UTF-8',
   };
-//
+
 //  Post the data to backend
   http.Response res = await http.post(
     'http://10.0.2.2:5000/ask',

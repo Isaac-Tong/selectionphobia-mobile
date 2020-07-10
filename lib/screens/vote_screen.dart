@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:selectionphobiamobile/networking/voteNetworking.dart';
 
 class VoteScreen extends StatefulWidget {
   @override
@@ -8,9 +9,30 @@ class VoteScreen extends StatefulWidget {
 }
 
 class _VoteScreenState extends State<VoteScreen> {
+  String title = ' ';
+  String description = ' ';
+  int cardCount;
+  Map response;
+  int totalVotes = 0;
+  List percentageList = [];
+  @override
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          Map questionResponse = await getQuestionById('5efa38c7194f32630007a074');
+          setState(() {
+            totalVotes = questionResponse['totalVotes'];
+            response = questionResponse;
+            title = questionResponse['title'];
+            description = questionResponse['description'];
+            cardCount = questionResponse['options'].length;
+          });
+        },
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(20),
@@ -21,7 +43,7 @@ class _VoteScreenState extends State<VoteScreen> {
                   children: <Widget>[
                     Flexible(
                       child: Text(
-                        'Lorem ipsum dolor sit amet, consecteur aliqua',
+                        title,
                         style: TextStyle(
                           color: darkblueColor,
                           fontWeight: FontWeight.bold,
@@ -41,13 +63,18 @@ class _VoteScreenState extends State<VoteScreen> {
                     borderRadius: BorderRadius.all(Radius.circular(4)),
                   ),
                 ),
-                Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra',
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 17,
-                    fontFamily: 'Lato',
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      description,
+                      style: TextStyle(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 17,
+                        fontFamily: 'Lato',
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
@@ -67,69 +94,101 @@ class _VoteScreenState extends State<VoteScreen> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: gradientColor,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Flexible(
-                                  child: Text(
-                                    'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
-                                    style: TextStyle(
-                                      color: darkblueColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17,
-                                      fontFamily: 'Lato',
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 12,
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Expanded(
-                                  child: LinearPercentIndicator(
-                                    lineHeight: 14,
-                                    percent: 0.8,
-                                    backgroundColor: Colors.grey,
-                                    progressColor: lightLightBlueColor,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                  child: Text(
-                                    '50%',
-                                    style: TextStyle(
-                                      fontFamily: 'Lato',
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: cardCount,
+                    itemBuilder: (context, index){
+                      return OptionCard(response['options'][index]['name'], response['options'][index]['votes'], totalVotes);
+                    },
                   ),
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class OptionCard extends StatelessWidget {
+  String name;
+  int percentage;
+  double indicatorPercentage;
+
+  OptionCard(String name, int votes, int totalVotes){
+    this.name = name;
+
+    if(totalVotes == 0){
+      this.indicatorPercentage = 0;
+      this.percentage = 0;
+      return;
+    }
+    this.indicatorPercentage = votes / totalVotes;
+    this.percentage = ((votes / totalVotes) * 100).round();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+      child: Column(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: gradientColor,
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Flexible(
+                      child: Text(
+                        name,
+                        style: TextStyle(
+                          color: darkblueColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                          fontFamily: 'Lato',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: LinearPercentIndicator(
+                        animation: true,
+                        animationDuration: 300,
+                        lineHeight: 14,
+                        percent: indicatorPercentage,
+                        backgroundColor: Colors.grey,
+                        progressColor: lightLightBlueColor,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: Text(
+                        percentage.toString() + '%',
+                        style: TextStyle(
+                          fontFamily: 'Lato',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
