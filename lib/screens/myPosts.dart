@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
 import 'package:selectionphobiamobile/networking/myPostsPageNetworking.dart';
+import 'package:shimmer/shimmer.dart';
 
 class MyPostsPage extends StatefulWidget {
   @override
@@ -10,7 +11,8 @@ class MyPostsPage extends StatefulWidget {
 class _MyPostsPageState extends State<MyPostsPage> {
 
   Map questionMap;
-  int postCount = 5;
+  int postCount = 10;
+  bool hasLoaded = false;
 
   @override
   void initState() {
@@ -22,6 +24,7 @@ class _MyPostsPageState extends State<MyPostsPage> {
   void buildQuestionCards() async{
     questionMap = await getMyPosts();
     setState(() {
+      hasLoaded = true;
       postCount = questionMap['questions'].length;
       print(questionMap['questions'][0]['title']);
     });
@@ -39,7 +42,7 @@ class _MyPostsPageState extends State<MyPostsPage> {
       ),
       body: SafeArea(
         child: Container(
-          margin: EdgeInsets.all(15),
+          margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
           child: Column(
             children: <Widget>[
               Row(
@@ -55,16 +58,127 @@ class _MyPostsPageState extends State<MyPostsPage> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 15,
+              ),
               Expanded(
                 child: ListView.builder(
                   itemCount: postCount,
                   itemBuilder: (context, index){
+                    if(hasLoaded == false){
+                      return Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                        decoration: BoxDecoration(
+                          color: gradientColor,
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(18),
+                          child: Shimmer.fromColors(
+                            baseColor: Colors.grey[200],
+                            highlightColor: Colors.grey[300],
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Container(
+                                      height: 15,
+                                      width: 200,
+                                      decoration: BoxDecoration(
+                                        color: gradientColor,
+                                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                                      ),
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Container(
+                                          height: 15,
+                                          width: 50,
+                                          decoration: BoxDecoration(
+                                            color: gradientColor,
+                                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Container(
+                                          height: 15,
+                                          width: 120,
+                                          decoration: BoxDecoration(
+                                            color: gradientColor,
+                                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Container(
+                                          height: 15,
+                                          width: 120,
+                                          decoration: BoxDecoration(
+                                            color: gradientColor,
+                                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 3,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      children: <Widget>[
+                                        Container(
+                                          height: 25,
+                                          width: 50,
+                                          decoration: BoxDecoration(
+                                            color: gradientColor,
+                                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Container(
+                                          height: 25,
+                                          width: 30,
+                                          decoration: BoxDecoration(
+                                            color: gradientColor,
+                                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }
                     int backwardsIndex = postCount - index - 1;
                     String title = questionMap['questions'][backwardsIndex]['title'];
                     String description = questionMap['questions'][backwardsIndex]['description'];
                     String totalVotes = questionMap['questions'][backwardsIndex]['totalVotes'].toString();
+
                     return Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
                       decoration: BoxDecoration(
                         color: gradientColor,
                         borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -133,6 +247,7 @@ class _MyPostsPageState extends State<MyPostsPage> {
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
+
                                   children: <Widget>[
                                     Container(
                                       padding: EdgeInsets.all(6),
