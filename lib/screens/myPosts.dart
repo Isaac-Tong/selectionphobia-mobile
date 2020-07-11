@@ -36,6 +36,9 @@ class _MyPostsPageState extends State<MyPostsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Container(),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           buildQuestionCards();
@@ -66,7 +69,6 @@ class _MyPostsPageState extends State<MyPostsPage> {
                 child: ListView.builder(
                   itemCount: postCount,
                   itemBuilder: (context, index){
-
                     //Load shimmer effect if data has not yet been loaded
                     if(hasLoaded == false){
                       return Container(

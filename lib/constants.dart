@@ -4,7 +4,7 @@ const mainColor = Color(0xff4bbd68);
 const offsetColor = Color(0xff63c97d);
 const pinkColor = Color(0xffFF7091);
 const darkblueColor = Color(0xff1F92BF);
-const lightblueColor = Color(0xffc0e4e9);
+const lightblueColor = Color(0xffE4F3FA);
 
 //Question Colours
 const askturquoiseColor = Color(0xff1fbebf);
@@ -24,5 +24,8 @@ const gradientColor = Color(0xffF1F5FA);
 //Opaque Colours
 const opaquelightLightBlueColor = Color(0x9969DBF5);
 const opaquegradientColor = Color(0xaaF1F5FA);
+
+//Grey
+const darkGreyColor = Color(0xff707070);
 
 
