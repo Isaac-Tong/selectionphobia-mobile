@@ -38,6 +38,8 @@ class _HomePageState extends State<HomePage> {
     return null;
   }
 
+  PageController pageController = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,37 +144,68 @@ class _HomePageState extends State<HomePage> {
                       flex: 8,
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                        child: ListView.builder(
-                          itemCount: 1,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              padding: EdgeInsets.all(20),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.15),
-                                    spreadRadius: 3,
-                                    blurRadius: 15,
-                                    offset: Offset(4, 4), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                children: <Widget>[
-                                  Flexible(
-                                    child: Text(
-                                      'There are many ways for us to do that beacuse I think that we',
-                                      style: TextStyle(
-                                        
-                                      ),
+                        child: PageView(
+                          controller: pageController,
+                          children: <Widget>[
+                            ListView.builder(
+                              itemCount: 9,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Container(
+                                  margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                                  child: Container(
+                                    padding: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(8)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.11),
+                                          spreadRadius: 4,
+                                          blurRadius: 15,
+                                          offset: Offset(4,
+                                              4), // changes position of shadow
+                                        ),
+                                      ],
+                                    ),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Flexible(
+                                          child: Text(
+                                            'There are many ways for us to do that beacuse I think that we',
+                                            style: TextStyle(
+                                              fontFamily: 'Lato',
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 8,
+                                        ),
+                                        Icon(
+                                          Icons.remove_red_eye,
+                                          color: Colors.deepOrangeAccent,
+                                        ),
+                                        SizedBox(
+                                          width: 8,
+                                        ),
+                                        Text(
+                                          '980',
+                                          style: TextStyle(
+                                              fontFamily: 'Lato',
+                                              fontSize: 15,
+                                              color: Colors.deepOrangeAccent),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
-                            );
-                          },
+                                );
+                              },
+                            ),
+                            Container(
+                              color: Colors.red,
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -186,3 +219,57 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+//ListView.builder(
+//itemCount: 9,
+//itemBuilder: (BuildContext context, int index) {
+//return Container(
+//margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+//child: Container(
+//padding: EdgeInsets.all(20),
+//decoration: BoxDecoration(
+//color: Colors.white,
+//borderRadius: BorderRadius.all(Radius.circular(8)),
+//boxShadow: [
+//BoxShadow(
+//color: Colors.grey.withOpacity(0.11),
+//spreadRadius: 4,
+//blurRadius: 15,
+//offset: Offset(4, 4), // changes position of shadow
+//),
+//],
+//),
+//child: Row(
+//children: <Widget>[
+//Flexible(
+//child: Text(
+//'There are many ways for us to do that beacuse I think that we',
+//style: TextStyle(
+//fontFamily: 'Lato',
+//fontSize: 15,
+//),
+//),
+//),
+//SizedBox(
+//width: 8,
+//),
+//Icon(
+//Icons.remove_red_eye,
+//color: Colors.deepOrangeAccent,
+//),
+//SizedBox(
+//width: 8,
+//),
+//Text(
+//'980',
+//style: TextStyle(
+//fontFamily: 'Lato',
+//fontSize: 15,
+//color: Colors.deepOrangeAccent
+//),
+//),
+//],
+//),
+//),
+//);
+//},
+//),
