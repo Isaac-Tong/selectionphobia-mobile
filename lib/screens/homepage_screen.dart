@@ -17,6 +17,8 @@ class _HomePageState extends State<HomePage> {
   Map questionMap;
   var initialVar;
 
+  String tempText = 'There are many ways for us to do that beacuse I think that we';
+
   @override
   void initState() {
     super.initState();
@@ -48,10 +50,13 @@ class _HomePageState extends State<HomePage> {
         label: Text('Ask'),
         backgroundColor: pinkColor,
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AskQuestion()),
-          );
+          setState(() {
+            tempText = 'JAJAJAJA';
+          });
+//          Navigator.push(
+//            context,
+//            MaterialPageRoute(builder: (context) => AskQuestion()),
+//          );
         },
       ),
       body: SafeArea(
@@ -137,6 +142,16 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
+                    AnimatedContainer(
+                      duration: Duration(milliseconds: 150),
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      height: 10,
+                      width: 10,
+                      alignment: Alignment.topLeft,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
@@ -172,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                                       children: <Widget>[
                                         Flexible(
                                           child: Text(
-                                            'There are many ways for us to do that beacuse I think that we',
+                                            tempText,
                                             style: TextStyle(
                                               fontFamily: 'Lato',
                                               fontSize: 15,
