@@ -40,6 +40,40 @@ class _HomePageState extends State<HomePage> {
     return null;
   }
 
+
+  List<Widget> buildIndicator(){
+    List<Widget> indicatorList = [];
+    for (int i = 0; i < 2; i++) {
+      if(i == currentIndex){
+        indicatorList.add(createIndicator(true));
+      }else{
+        indicatorList.add(createIndicator(false));
+      }
+    }
+
+    return indicatorList;
+  }
+  Widget createIndicator(bool isCurrent){
+    Color activeColor = Colors.transparent;
+    double width = 25;
+    if(isCurrent){
+      activeColor = Colors.deepOrangeAccent;
+      width = 15;
+    }
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      height: 7.0,
+      width: width,
+      margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
+      decoration: BoxDecoration(
+        color: activeColor,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+    );
+  }
+
+  int currentIndex = 0;
+
   PageController pageController = PageController(initialPage: 0);
 
   @override
@@ -119,41 +153,40 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(flex: 4, child: MyPostPageView(initialVar)),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    Column(
                       children: <Widget>[
-                        Text(
-                          'New',
-                          style: TextStyle(
-                            fontFamily: 'Lato',
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Text(
+                              'New',
+                              style: TextStyle(
+                                fontFamily: 'Lato',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              'Tags',
+                              style: TextStyle(
+                                fontFamily: 'Lato',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          'Tags',
-                          style: TextStyle(
-                            fontFamily: 'Lato',
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: buildIndicator(),
                         ),
                       ],
                     ),
-                    AnimatedContainer(
-                      duration: Duration(milliseconds: 150),
-                      margin: EdgeInsets.symmetric(horizontal: 10),
-                      height: 10,
-                      width: 10,
-                      alignment: Alignment.topLeft,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                      ),
-                    ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Expanded(
                       flex: 8,
@@ -161,6 +194,11 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
                         child: PageView(
                           controller: pageController,
+                          onPageChanged: (index){
+                            setState(() {
+                              currentIndex = index;
+                            });
+                          },
                           children: <Widget>[
                             ListView.builder(
                               itemCount: 9,
@@ -234,57 +272,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-//ListView.builder(
-//itemCount: 9,
-//itemBuilder: (BuildContext context, int index) {
-//return Container(
-//margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
-//child: Container(
-//padding: EdgeInsets.all(20),
-//decoration: BoxDecoration(
-//color: Colors.white,
-//borderRadius: BorderRadius.all(Radius.circular(8)),
-//boxShadow: [
-//BoxShadow(
-//color: Colors.grey.withOpacity(0.11),
-//spreadRadius: 4,
-//blurRadius: 15,
-//offset: Offset(4, 4), // changes position of shadow
-//),
-//],
-//),
-//child: Row(
-//children: <Widget>[
-//Flexible(
-//child: Text(
-//'There are many ways for us to do that beacuse I think that we',
-//style: TextStyle(
-//fontFamily: 'Lato',
-//fontSize: 15,
-//),
-//),
-//),
-//SizedBox(
-//width: 8,
-//),
-//Icon(
-//Icons.remove_red_eye,
-//color: Colors.deepOrangeAccent,
-//),
-//SizedBox(
-//width: 8,
-//),
-//Text(
-//'980',
-//style: TextStyle(
-//fontFamily: 'Lato',
-//fontSize: 15,
-//color: Colors.deepOrangeAccent
-//),
-//),
-//],
-//),
-//),
-//);
-//},
-//),
