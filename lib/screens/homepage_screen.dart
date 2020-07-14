@@ -200,76 +200,73 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                       flex: 8,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                        child: PageView(
-                          controller: pageController,
-                          onPageChanged: (index){
-                            setState(() {
-                              currentIndex = index;
-                            });
-                          },
-                          children: <Widget>[
-                            ListView.builder(
-                              itemCount: 9,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Container(
-                                  margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                                  child: Container(
-                                    padding: EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(8)),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.11),
-                                          spreadRadius: 4,
-                                          blurRadius: 15,
-                                          offset: Offset(4,
-                                              4), // changes position of shadow
-                                        ),
-                                      ],
-                                    ),
-                                    child: Row(
-                                      children: <Widget>[
-                                        Flexible(
-                                          child: Text(
-                                            tempText,
-                                            style: TextStyle(
-                                              fontFamily: 'Lato',
-                                              fontSize: 15,
-                                            ),
+                      child: PageView(
+                        controller: pageController,
+                        onPageChanged: (index){
+                          setState(() {
+                            currentIndex = index;
+                          });
+                        },
+                        children: <Widget>[
+                          ListView.builder(
+                            itemCount: 5,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                margin: EdgeInsets.fromLTRB(0, 0, 15, 20),
+                                child: Container(
+                                  padding: EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.12),
+                                        spreadRadius: 4,
+                                        blurRadius: 10,
+                                        offset: Offset(4,
+                                            4), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Flexible(
+                                        child: Text(
+                                          tempText,
+                                          style: TextStyle(
+                                            fontFamily: 'Lato',
+                                            fontSize: 15,
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 8,
-                                        ),
-                                        Icon(
-                                          Icons.remove_red_eye,
-                                          color: Colors.deepOrangeAccent,
-                                        ),
-                                        SizedBox(
-                                          width: 8,
-                                        ),
-                                        Text(
-                                          '980',
-                                          style: TextStyle(
-                                              fontFamily: 'Lato',
-                                              fontSize: 15,
-                                              color: Colors.deepOrangeAccent),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                      SizedBox(
+                                        width: 8,
+                                      ),
+                                      Icon(
+                                        Icons.remove_red_eye,
+                                        color: Colors.deepOrangeAccent,
+                                      ),
+                                      SizedBox(
+                                        width: 8,
+                                      ),
+                                      Text(
+                                        '980',
+                                        style: TextStyle(
+                                            fontFamily: 'Lato',
+                                            fontSize: 15,
+                                            color: Colors.deepOrangeAccent),
+                                      ),
+                                    ],
                                   ),
-                                );
-                              },
-                            ),
-                            Container(
-                              color: Colors.red,
-                            ),
-                          ],
-                        ),
+                                ),
+                              );
+                            },
+                          ),
+                          Container(
+                            color: Colors.red,
+                          ),
+                        ],
                       ),
                     ),
                   ],
