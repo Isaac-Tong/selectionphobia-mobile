@@ -160,20 +160,30 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Text(
-                              'New',
-                              style: TextStyle(
-                                fontFamily: 'Lato',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                            InkWell(
+                              onTap: () {
+                                pageController.animateToPage(0, duration: Duration(milliseconds: 250), curve: Curves.easeOut);
+                              },
+                              child: Text(
+                                'New',
+                                style: TextStyle(
+                                  fontFamily: 'Lato',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                            Text(
-                              'Tags',
-                              style: TextStyle(
-                                fontFamily: 'Lato',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                            InkWell(
+                              onTap: () {
+                                pageController.animateToPage(1, duration: Duration(milliseconds: 250), curve: Curves.easeOut);
+                              },
+                              child: Text(
+                                'Tags',
+                                style: TextStyle(
+                                  fontFamily: 'Lato',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ],
