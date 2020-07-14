@@ -84,13 +84,10 @@ class _HomePageState extends State<HomePage> {
         label: Text('Ask'),
         backgroundColor: pinkColor,
         onPressed: () {
-          setState(() {
-            tempText = 'JAJAJAJA';
-          });
-//          Navigator.push(
-//            context,
-//            MaterialPageRoute(builder: (context) => AskQuestion()),
-//          );
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AskQuestion()),
+          );
         },
       ),
       body: SafeArea(
