@@ -372,10 +372,9 @@ class _HomePageState extends State<HomePage> {
                               );
                             },
                           ),
-                          ListView.builder(
-                            itemCount: 5,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Container(
+                          ListView(
+                            children: <Widget>[
+                              Container(
                                 margin: EdgeInsets.only(right: 15, bottom: 15),
                                 height: 125,
                                 child: Row(
@@ -557,8 +556,374 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ],
                                 ),
-                              );
-                            },
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(right: 15, bottom: 15),
+                                height: 125,
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                              Colors.grey.withOpacity(0.05),
+                                              spreadRadius: 4,
+                                              blurRadius: 7,
+                                              offset: Offset(4,
+                                                  4), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  'Lorem Ipsum',
+                                                  style: TextStyle(
+                                                    fontFamily: 'Lato',
+                                                    color:
+                                                    Colors.deepOrangeAccent,
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .start,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .start,
+                                                      children: <Widget>[
+                                                        Text(
+                                                          '404,100 posts',
+                                                          style: TextStyle(
+                                                            color: Colors.grey,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 9,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                      children: <Widget>[
+                                                        FittedBox(
+                                                          fit: BoxFit.fill,
+                                                          child: Image(
+                                                            image: AssetImage(
+                                                              'assets/images/life_style.png',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                              Colors.grey.withOpacity(0.05),
+                                              spreadRadius: 4,
+                                              blurRadius: 7,
+                                              offset: Offset(4,
+                                                  4), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  'Lorem Ipsum',
+                                                  style: TextStyle(
+                                                    fontFamily: 'Lato',
+                                                    color:
+                                                    Colors.deepOrangeAccent,
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .start,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .start,
+                                                      children: <Widget>[
+                                                        Text(
+                                                          '404,100 posts',
+                                                          style: TextStyle(
+                                                            color: Colors.grey,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 9,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                      children: <Widget>[
+                                                        FittedBox(
+                                                          fit: BoxFit.fill,
+                                                          child: Image(
+                                                            image: AssetImage(
+                                                              'assets/images/life_style.png',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(right: 15, bottom: 15),
+                                height: 125,
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                              Colors.grey.withOpacity(0.05),
+                                              spreadRadius: 4,
+                                              blurRadius: 7,
+                                              offset: Offset(4,
+                                                  4), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  'Lorem Ipsum',
+                                                  style: TextStyle(
+                                                    fontFamily: 'Lato',
+                                                    color:
+                                                    Colors.deepOrangeAccent,
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .start,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .start,
+                                                      children: <Widget>[
+                                                        Text(
+                                                          '404,100 posts',
+                                                          style: TextStyle(
+                                                            color: Colors.grey,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 9,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                      children: <Widget>[
+                                                        FittedBox(
+                                                          fit: BoxFit.fill,
+                                                          child: Image(
+                                                            image: AssetImage(
+                                                              'assets/images/life_style.png',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                              Colors.grey.withOpacity(0.05),
+                                              spreadRadius: 4,
+                                              blurRadius: 7,
+                                              offset: Offset(4,
+                                                  4), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  'Lorem Ipsum',
+                                                  style: TextStyle(
+                                                    fontFamily: 'Lato',
+                                                    color:
+                                                    Colors.deepOrangeAccent,
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .start,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .start,
+                                                      children: <Widget>[
+                                                        Text(
+                                                          '404,100 posts',
+                                                          style: TextStyle(
+                                                            color: Colors.grey,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 9,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                      children: <Widget>[
+                                                        FittedBox(
+                                                          fit: BoxFit.fill,
+                                                          child: Image(
+                                                            image: AssetImage(
+                                                              'assets/images/life_style.png',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
