@@ -20,7 +20,5 @@ Future<Map> getMyPosts() async {
   http.Response res = await http.get('http://10.0.2.2:5000/myQuestions/compact', headers: headerMap);
 
   Map questionMap = json.decode(res.body);
-//  print(questionMap);
-//  print(questionMap['questions'][0]);
   return questionMap;
 }
