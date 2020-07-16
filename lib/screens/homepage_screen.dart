@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
+import 'package:selectionphobiamobile/screens/vote_screen.dart';
 import 'myposts_pageview.dart';
 import 'trendingposts_listview.dart';
 import 'package:selectionphobiamobile/networking/homepage.dart';
@@ -21,7 +22,8 @@ class _HomePageState extends State<HomePage> {
   int newListCount = 5;
   var initialVar;
 
-  String tempText = 'There are many ways for us to do that beacuse I think that we';
+  String tempText =
+      'There are many ways for us to do that beacuse I think that we';
 
   @override
   void initState() {
@@ -53,23 +55,23 @@ class _HomePageState extends State<HomePage> {
     return null;
   }
 
-
-  List<Widget> buildIndicator(){
+  List<Widget> buildIndicator() {
     List<Widget> indicatorList = [];
     for (int i = 0; i < 2; i++) {
-      if(i == currentIndex){
+      if (i == currentIndex) {
         indicatorList.add(createIndicator(true));
-      }else{
+      } else {
         indicatorList.add(createIndicator(false));
       }
     }
 
     return indicatorList;
   }
-  Widget createIndicator(bool isCurrent){
+
+  Widget createIndicator(bool isCurrent) {
     Color activeColor = Colors.transparent;
     double width = 25;
-    if(isCurrent){
+    if (isCurrent) {
       activeColor = Colors.deepOrangeAccent;
       width = 15;
     }
@@ -173,7 +175,9 @@ class _HomePageState extends State<HomePage> {
                           children: <Widget>[
                             InkWell(
                               onTap: () {
-                                pageController.animateToPage(0, duration: Duration(milliseconds: 250), curve: Curves.easeOut);
+                                pageController.animateToPage(0,
+                                    duration: Duration(milliseconds: 250),
+                                    curve: Curves.easeOut);
                               },
                               child: Text(
                                 'New',
@@ -186,7 +190,9 @@ class _HomePageState extends State<HomePage> {
                             ),
                             InkWell(
                               onTap: () {
-                                pageController.animateToPage(1, duration: Duration(milliseconds: 250), curve: Curves.easeOut);
+                                pageController.animateToPage(1,
+                                    duration: Duration(milliseconds: 250),
+                                    curve: Curves.easeOut);
                               },
                               child: Text(
                                 'Tags',
@@ -199,7 +205,6 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: buildIndicator(),
@@ -213,7 +218,7 @@ class _HomePageState extends State<HomePage> {
                       flex: 8,
                       child: PageView(
                         controller: pageController,
-                        onPageChanged: (index){
+                        onPageChanged: (index) {
                           setState(() {
                             currentIndex = index;
                           });
@@ -222,7 +227,7 @@ class _HomePageState extends State<HomePage> {
                           ListView.builder(
                             itemCount: newListCount,
                             itemBuilder: (BuildContext context, int index) {
-                              if(newMap == null){
+                              if (newMap == null) {
                                 return Container(
                                   margin: EdgeInsets.fromLTRB(0, 0, 15, 20),
                                   child: Container(
@@ -230,7 +235,7 @@ class _HomePageState extends State<HomePage> {
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius:
-                                      BorderRadius.all(Radius.circular(8)),
+                                          BorderRadius.all(Radius.circular(8)),
                                       boxShadow: [
                                         BoxShadow(
                                           color: Colors.grey.withOpacity(0.12),
@@ -245,7 +250,8 @@ class _HomePageState extends State<HomePage> {
                                       baseColor: Colors.grey[200],
                                       highlightColor: Colors.grey[300],
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
                                           Column(
                                             children: <Widget>[
@@ -253,7 +259,8 @@ class _HomePageState extends State<HomePage> {
                                                 decoration: BoxDecoration(
                                                   color: Colors.grey,
                                                   borderRadius:
-                                                  BorderRadius.all(Radius.circular(7)),
+                                                      BorderRadius.all(
+                                                          Radius.circular(7)),
                                                 ),
                                                 width: 100,
                                                 height: 15,
@@ -273,14 +280,14 @@ class _HomePageState extends State<HomePage> {
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
-                                                  BorderRadius.all(Radius.circular(7)),
+                                                      BorderRadius.all(
+                                                          Radius.circular(7)),
                                                 ),
                                                 width: 30,
                                                 height: 15,
                                               ),
                                             ],
                                           ),
-
                                         ],
                                       ),
                                     ),
@@ -289,21 +296,23 @@ class _HomePageState extends State<HomePage> {
                               }
 
                               String title = newMap['title'][index]['title'];
-                              String totalVotes = newMap['title'][index]['totalVotes'].toString();
-
+                              String totalVotes = newMap['title'][index]
+                                      ['totalVotes']
+                                  .toString();
+                              String _id = newMap['title'][index]['_id'];
                               return Container(
                                 margin: EdgeInsets.fromLTRB(0, 0, 15, 20),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
+                                      BorderRadius.all(Radius.circular(8)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.12),
                                       spreadRadius: 4,
                                       blurRadius: 10,
-                                      offset: Offset(4,
-                                          4), // changes position of shadow
+                                      offset: Offset(
+                                          4, 4), // changes position of shadow
                                     ),
                                   ],
                                 ),
@@ -311,13 +320,19 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.transparent,
                                   child: InkWell(
                                     borderRadius: BorderRadius.circular(8),
-                                    onTap: (){
-                                      
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                VoteScreen(_id)),
+                                      );
                                     },
                                     child: Container(
                                       padding: EdgeInsets.all(20),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
                                           Flexible(
                                             child: Text(
@@ -345,11 +360,11 @@ class _HomePageState extends State<HomePage> {
                                                 style: TextStyle(
                                                     fontFamily: 'Lato',
                                                     fontSize: 15,
-                                                    color: Colors.deepOrangeAccent),
+                                                    color: Colors
+                                                        .deepOrangeAccent),
                                               ),
                                             ],
                                           ),
-
                                         ],
                                       ),
                                     ),
@@ -358,14 +373,6 @@ class _HomePageState extends State<HomePage> {
                               );
                             },
                           ),
-
-
-
-
-
-
-
-
                           ListView.builder(
                             itemCount: 5,
                             itemBuilder: (BuildContext context, int index) {
@@ -379,10 +386,12 @@ class _HomePageState extends State<HomePage> {
                                         padding: EdgeInsets.all(12),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
                                           boxShadow: [
                                             BoxShadow(
-                                              color: Colors.grey.withOpacity(0.05),
+                                              color:
+                                                  Colors.grey.withOpacity(0.05),
                                               spreadRadius: 4,
                                               blurRadius: 7,
                                               offset: Offset(4,
@@ -391,16 +400,19 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Text(
                                                   'Lorem Ipsum',
                                                   style: TextStyle(
                                                     fontFamily: 'Lato',
-                                                    color: Colors.deepOrangeAccent,
+                                                    color:
+                                                        Colors.deepOrangeAccent,
                                                     fontSize: 20,
                                                   ),
                                                 ),
@@ -408,13 +420,19 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                             Expanded(
                                               child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: <Widget>[
                                                   Expanded(
                                                     flex: 5,
                                                     child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: <Widget>[
                                                         Text(
                                                           '404,100 posts',
@@ -428,7 +446,8 @@ class _HomePageState extends State<HomePage> {
                                                   Expanded(
                                                     flex: 9,
                                                     child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
                                                       children: <Widget>[
                                                         FittedBox(
                                                           fit: BoxFit.fill,
@@ -456,10 +475,12 @@ class _HomePageState extends State<HomePage> {
                                         padding: EdgeInsets.all(12),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
                                           boxShadow: [
                                             BoxShadow(
-                                              color: Colors.grey.withOpacity(0.05),
+                                              color:
+                                                  Colors.grey.withOpacity(0.05),
                                               spreadRadius: 4,
                                               blurRadius: 7,
                                               offset: Offset(4,
@@ -468,16 +489,19 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Text(
                                                   'Lorem Ipsum',
                                                   style: TextStyle(
                                                     fontFamily: 'Lato',
-                                                    color: Colors.deepOrangeAccent,
+                                                    color:
+                                                        Colors.deepOrangeAccent,
                                                     fontSize: 20,
                                                   ),
                                                 ),
@@ -485,13 +509,19 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                             Expanded(
                                               child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: <Widget>[
                                                   Expanded(
                                                     flex: 5,
                                                     child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: <Widget>[
                                                         Text(
                                                           '404,100 posts',
@@ -505,7 +535,8 @@ class _HomePageState extends State<HomePage> {
                                                   Expanded(
                                                     flex: 9,
                                                     child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
                                                       children: <Widget>[
                                                         FittedBox(
                                                           fit: BoxFit.fill,
