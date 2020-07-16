@@ -107,7 +107,7 @@ class _MyPostPageViewState extends State<MyPostPageView> {
     return Scaffold(
       body: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 7,
+        itemCount: 1,
         itemBuilder: (BuildContext context, int itemIndex) {
           return Container(
             margin: EdgeInsets.all(5),
