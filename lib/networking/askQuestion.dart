@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void askQuestion(String question, String description, List cards) async {
+void askQuestion(String question, String description, List cards, String tag) async {
 
   print(cards);
   //Get the token from shared preferences
@@ -25,6 +25,7 @@ void askQuestion(String question, String description, List cards) async {
         'title': question,
         'description': description,
         'options': cards,
+        'tags': tag,
       })
   );
 

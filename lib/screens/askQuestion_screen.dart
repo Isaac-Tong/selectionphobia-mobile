@@ -11,14 +11,17 @@ class AskQuestion extends StatefulWidget {
 
 class _AskQuestionState extends State<AskQuestion> {
 
+
+
   //TEST PAGE
   List cards = [];
 
-  List item = [DropdownMenuItem(value: 'abc',child: Text('Hello'))];
+  String dropdownValue;
 
 
   //Call this function to create a new option menu
   Widget createOptionMenu(String optionText, int counter){
+
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: ConstrainedBox(
@@ -101,10 +104,7 @@ class _AskQuestionState extends State<AskQuestion> {
       return optionMenu[index];
     });
   }
-  //Remove children
-  void removeChildren(String text){
 
-  }
 
 
   int optionMenuCounter = 0;
@@ -179,8 +179,21 @@ class _AskQuestionState extends State<AskQuestion> {
               Scaffold.of(context).showSnackBar(noItems);
               return;
             }
+            if(dropdownValue == null){
+              SnackBar noItems = SnackBar(
+                content: Text(
+                  'Please select a tag',
+                  style: TextStyle(
+                    fontFamily: 'Lato',
+                  ),
+                ),
+                backgroundColor: pinkColor,
+              );
+              Scaffold.of(context).showSnackBar(noItems);
+              return;
+            }
 
-          askQuestion(question, description, cards);
+          askQuestion(question, description, cards, dropdownValue);
           Navigator.pop(context);
           },
         );
@@ -313,16 +326,53 @@ class _AskQuestionState extends State<AskQuestion> {
                   SizedBox(
                     height: 10,
                   ),
-                  DropdownButton<String>(
-                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
-                      return new DropdownMenuItem<String>(
-                        value: value,
-                        child: new Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (_) {},
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: gradientColor,
+                          borderRadius: BorderRadius.all(Radius.circular(40)),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            hint: Text(
+                              'Select Tag',
+                              style: TextStyle(
+                                color: pinkColor,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            value: dropdownValue,
+                            iconSize: 24,
+                            elevation: 2,
+                            style: TextStyle(
+                              fontFamily: 'Lato',
+                              fontWeight: FontWeight.bold,
+                              color: pinkColor,
+                            ),
+                            onChanged: (String newValue) {
+                              setState(() {
+                                dropdownValue = newValue;
+                              });
+                            },
+                            items: <String>['Relationships', 'Lifestyle', 'Sports', 'Science', 'Comedy', 'Travel', 'Family', 'School', 'Work', 'Politics', 'Other']
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-
+                  SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
