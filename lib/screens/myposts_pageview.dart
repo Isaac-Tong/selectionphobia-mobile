@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:selectionphobiamobile/constants.dart';
 import '../networking/homepage.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:selectionphobiamobile/screens/vote_screen.dart';
 
 
 class MyPostPageView extends StatefulWidget {
@@ -34,8 +35,8 @@ class _MyPostPageViewState extends State<MyPostPageView> {
 
     if(widget.initialVar != null){
       initCount = widget.initialVar['questions'].length;
-    }
 
+    }
 
     return Scaffold(
       body: ListView.builder(
@@ -49,9 +50,26 @@ class _MyPostPageViewState extends State<MyPostPageView> {
               borderRadius: BorderRadius.all(Radius.circular(8)),
               color: lightblueColor,
             ),
-            child: Padding(
-              padding: EdgeInsets.all(12),
-              child: ShimmerPage(widget.initialVar, itemIndex),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                onTap: (){
+                  if(widget.initialVar == null){
+                    return;
+                  }
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            VoteScreen(widget.initialVar['questions'][itemIndex]['_id'])),
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: ShimmerPage(widget.initialVar, itemIndex),
+                ),
+              ),
             ),
           );
         },
@@ -70,6 +88,7 @@ class ShimmerPage extends StatelessWidget {
     pageIndex = index;
     qmap = map;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -142,6 +161,7 @@ class ShimmerPage extends StatelessWidget {
     voteText = qmap['questions'][pageIndex]['totalVotes'].toString();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Expanded(
           child: Text(
