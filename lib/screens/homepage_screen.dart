@@ -399,7 +399,7 @@ class _HomePageState extends State<HomePage> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
-                                              'Lorem Ipsum',
+                                              'Relationships',
                                               style: TextStyle(
                                                 fontFamily: 'Lato',
                                                 color: Colors.deepOrangeAccent,
@@ -421,14 +421,11 @@ class _HomePageState extends State<HomePage> {
                                                     SizedBox(
                                                       height: 20,
                                                     ),
-                                                    FittedBox(
-                                                      fit: BoxFit.contain,
-                                                      child: Container(
-                                                        child: Image(
-                                                          height: 40,
-                                                          image: AssetImage(
-                                                            'assets/images/life_style.png',
-                                                          ),
+                                                    Container(
+                                                      child: Image(
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                          'assets/images/love.png',
                                                         ),
                                                       ),
                                                     ),
@@ -463,7 +460,7 @@ class _HomePageState extends State<HomePage> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
-                                              'Lorem Ipsum',
+                                              'Lifestyle',
                                               style: TextStyle(
                                                 fontFamily: 'Lato',
                                                 color: Colors.deepOrangeAccent,
@@ -485,14 +482,11 @@ class _HomePageState extends State<HomePage> {
                                                     SizedBox(
                                                       height: 20,
                                                     ),
-                                                    FittedBox(
-                                                      fit: BoxFit.contain,
-                                                      child: Container(
-                                                        child: Image(
-                                                          height: 40,
-                                                          image: AssetImage(
-                                                            'assets/images/life_style.png',
-                                                          ),
+                                                    Container(
+                                                      child: Image(
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                          'assets/images/lifestyle.png',
                                                         ),
                                                       ),
                                                     ),
@@ -531,7 +525,7 @@ class _HomePageState extends State<HomePage> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
-                                              'Lorem Ipsum',
+                                              'School',
                                               style: TextStyle(
                                                 fontFamily: 'Lato',
                                                 color: Colors.deepOrangeAccent,
@@ -553,14 +547,11 @@ class _HomePageState extends State<HomePage> {
                                                     SizedBox(
                                                       height: 20,
                                                     ),
-                                                    FittedBox(
-                                                      fit: BoxFit.contain,
-                                                      child: Container(
-                                                        child: Image(
-                                                          height: 40,
-                                                          image: AssetImage(
-                                                            'assets/images/life_style.png',
-                                                          ),
+                                                    Container(
+                                                      child: Image(
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                          'assets/images/school.png',
                                                         ),
                                                       ),
                                                     ),
@@ -595,7 +586,7 @@ class _HomePageState extends State<HomePage> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
-                                              'Lorem Ipsum',
+                                              'Travel',
                                               style: TextStyle(
                                                 fontFamily: 'Lato',
                                                 color: Colors.deepOrangeAccent,
@@ -617,14 +608,11 @@ class _HomePageState extends State<HomePage> {
                                                     SizedBox(
                                                       height: 20,
                                                     ),
-                                                    FittedBox(
-                                                      fit: BoxFit.contain,
-                                                      child: Container(
-                                                        child: Image(
-                                                          height: 40,
-                                                          image: AssetImage(
-                                                            'assets/images/life_style.png',
-                                                          ),
+                                                    Container(
+                                                      child: Image(
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                          'assets/images/travel.png',
                                                         ),
                                                       ),
                                                     ),
@@ -663,7 +651,7 @@ class _HomePageState extends State<HomePage> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
-                                              'Lorem Ipsum',
+                                              'Family',
                                               style: TextStyle(
                                                 fontFamily: 'Lato',
                                                 color: Colors.deepOrangeAccent,
@@ -685,14 +673,11 @@ class _HomePageState extends State<HomePage> {
                                                     SizedBox(
                                                       height: 20,
                                                     ),
-                                                    FittedBox(
-                                                      fit: BoxFit.contain,
-                                                      child: Container(
-                                                        child: Image(
-                                                          height: 40,
-                                                          image: AssetImage(
-                                                            'assets/images/life_style.png',
-                                                          ),
+                                                    Container(
+                                                      child: Image(
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                          'assets/images/family.png',
                                                         ),
                                                       ),
                                                     ),
@@ -727,7 +712,7 @@ class _HomePageState extends State<HomePage> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
-                                              'Lorem Ipsum',
+                                              'Politics',
                                               style: TextStyle(
                                                 fontFamily: 'Lato',
                                                 color: Colors.deepOrangeAccent,
@@ -749,14 +734,11 @@ class _HomePageState extends State<HomePage> {
                                                     SizedBox(
                                                       height: 20,
                                                     ),
-                                                    FittedBox(
-                                                      fit: BoxFit.contain,
-                                                      child: Container(
-                                                        child: Image(
-                                                          height: 40,
-                                                          image: AssetImage(
-                                                            'assets/images/life_style.png',
-                                                          ),
+                                                    Container(
+                                                      child: Image(
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                          'assets/images/politics.png',
                                                         ),
                                                       ),
                                                     ),
@@ -771,7 +753,323 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 ),
                               ),
-
+                              Container(
+                                margin: EdgeInsets.only(bottom: 15),
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(0.08),
+                                              spreadRadius: 4,
+                                              blurRadius: 7,
+                                              offset: Offset(4,
+                                                  4), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'Science',
+                                              style: TextStyle(
+                                                fontFamily: 'Lato',
+                                                color: Colors.deepOrangeAccent,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  '404,100 posts',
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                                Column(
+                                                  children: <Widget>[
+                                                    SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Container(
+                                                      child: Image(
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                          'assets/images/science.png',
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 13,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(0.08),
+                                              spreadRadius: 4,
+                                              blurRadius: 7,
+                                              offset: Offset(4,
+                                                  4), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'Sports',
+                                              style: TextStyle(
+                                                fontFamily: 'Lato',
+                                                color: Colors.deepOrangeAccent,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  '404,100 posts',
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                                Column(
+                                                  children: <Widget>[
+                                                    SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Container(
+                                                      child: Image(
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                          'assets/images/sports.png',
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(bottom: 15),
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(0.08),
+                                              spreadRadius: 4,
+                                              blurRadius: 7,
+                                              offset: Offset(4,
+                                                  4), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'Work',
+                                              style: TextStyle(
+                                                fontFamily: 'Lato',
+                                                color: Colors.deepOrangeAccent,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  '404,100 posts',
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                                Column(
+                                                  children: <Widget>[
+                                                    SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Container(
+                                                      child: Image(
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                          'assets/images/work.png',
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 13,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(0.08),
+                                              spreadRadius: 4,
+                                              blurRadius: 7,
+                                              offset: Offset(4,
+                                                  4), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'Comedy',
+                                              style: TextStyle(
+                                                fontFamily: 'Lato',
+                                                color: Colors.deepOrangeAccent,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  '404,100 posts',
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                                Column(
+                                                  children: <Widget>[
+                                                    SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Container(
+                                                      child: Image(
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                          'assets/images/comedy.png',
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(bottom: 15),
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(0.08),
+                                              spreadRadius: 4,
+                                              blurRadius: 7,
+                                              offset: Offset(4,
+                                                  4), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'Other',
+                                              style: TextStyle(
+                                                fontFamily: 'Lato',
+                                                color: Colors.deepOrangeAccent,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  '404,100 posts',
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                                Column(
+                                                  children: <Widget>[
+                                                    SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Container(
+                                                      child: Image(
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                          'assets/images/other.png',
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
                             ],
                           ),
                         ],
