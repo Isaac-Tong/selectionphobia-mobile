@@ -125,7 +125,7 @@ class _AskQuestionState extends State<AskQuestion> {
         return FloatingActionButton(
           child: Icon(Icons.send),
           backgroundColor: darkblueColor,
-          onPressed: (){
+          onPressed: () async{
             if(question.length > 110){
               SnackBar noItems = SnackBar(
                 content: Text(
@@ -193,7 +193,7 @@ class _AskQuestionState extends State<AskQuestion> {
               return;
             }
 
-          askQuestion(question, description, cards, dropdownValue);
+          await askQuestion(question, description, cards, dropdownValue);
           Navigator.pop(context);
           },
         );

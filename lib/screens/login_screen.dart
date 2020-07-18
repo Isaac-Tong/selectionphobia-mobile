@@ -135,43 +135,52 @@ class _LoginScreenState extends State<LoginScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      GestureDetector(
-                        onTap: () async {
-                          //Send to networking page
-                          try{
-                            await loginPost(username, password);
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                                (Route<dynamic> route) => false,
-                          );
-                          }catch(e){
-                            print('error');
-                            setState(() {
-                              _visible = true;
-                              Future.delayed(const Duration(milliseconds: 3000), () {
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: pinkColor,
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            onTap: () async {
+                              //Send to networking page
+                              try{
+                                await loginPost(username, password);
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => HomePage()),
+                                      (Route<dynamic> route) => false,
+                                );
+                              }catch(e){
+                                print('error');
                                 setState(() {
-                                  _visible = false;
+                                  _visible = true;
+                                  Future.delayed(const Duration(milliseconds: 3000), () {
+                                    setState(() {
+                                      _visible = false;
+                                    });
+                                  });
                                 });
-                              });
-                            });
-                          }
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: pinkColor,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(12),
-                            child: Text(
-                              'Login',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'Lato',
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 30,
+                              }
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(12),
+                                child: Text(
+                                  'Login',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontFamily: 'Lato',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 30,
+                                  ),
+                                ),
                               ),
                             ),
                           ),

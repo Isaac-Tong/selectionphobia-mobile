@@ -10,6 +10,7 @@ import '../networking/homepage.dart';
 import 'package:selectionphobiamobile/screens/myPosts.dart';
 import 'package:selectionphobiamobile/networking/newQuestion.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:selectionphobiamobile/screens/settings.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -120,9 +121,15 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Icon(
-                          Icons.settings,
+                        IconButton(
+                          icon: Icon(Icons.settings),
                           color: darkGreyColor,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Settings()),
+                            );
+                          },
                         ),
                       ],
                     ),
