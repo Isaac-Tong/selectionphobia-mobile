@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/screens/askQuestion_screen.dart';
 import 'package:selectionphobiamobile/screens/choice_screen.dart';
 import 'package:selectionphobiamobile/screens/myposts_pageview.dart';
+import 'package:selectionphobiamobile/screens/onboarding.dart';
 import 'package:selectionphobiamobile/screens/option_menu.dart';
 import 'package:selectionphobiamobile/screens/tags_page.dart';
 import 'screens/login_screen.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Selection Phobia',
-      home: LoginScreen(),
+      home: OnBoard(),
     );
   }
 }
