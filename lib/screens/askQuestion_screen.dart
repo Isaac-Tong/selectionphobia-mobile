@@ -193,7 +193,18 @@ class _AskQuestionState extends State<AskQuestion> {
               return;
             }
 
+            SnackBar noItems = SnackBar(
+              content: Text(
+                'Asking question ...',
+                style: TextStyle(
+                  fontFamily: 'Lato',
+                ),
+              ),
+              backgroundColor: pinkColor,
+            );
+            Scaffold.of(context).showSnackBar(noItems);
           await askQuestion(question, description, cards, dropdownValue);
+
           Navigator.pop(context);
           },
         );

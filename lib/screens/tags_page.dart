@@ -33,7 +33,7 @@ class _TagsPageState extends State<TagsPage> {
     _scrollController.addListener(() {
       if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
         setState(() {
-          fetchCount += 10;
+          fetchCount = totalVotes.length;
           fetchTen();
         });
       }
