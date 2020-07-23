@@ -1,8 +1,23 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void createPost(String user, String pass, String email) async {
+
+  if(user == null){
+    throw 'Username can\'t be empty';
+  }
+  if(pass == null){
+    throw 'Password can\'t be empty';
+  }
+  if(email == null){
+    throw 'Email can\'t be empty';
+  }
+  if(!EmailValidator.validate(email)){
+    throw 'Invalid email';
+  }
+
   //Sanitize the username and password
   user = user.replaceAll(' ', '');
 

@@ -3,6 +3,11 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void loginPost(String user, String pass) async {
+
+  if(user == null || pass == null){
+    throw 'Fields are empty';
+  }
+
   //Sanitize the username and password
   user = user.replaceAll(' ', '');
 

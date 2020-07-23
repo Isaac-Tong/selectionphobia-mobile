@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:selectionphobiamobile/constants.dart';
+import 'package:selectionphobiamobile/networking/settingsNetworking.dart';
+import 'package:selectionphobiamobile/screens/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class Settings extends StatefulWidget {
   @override
@@ -7,6 +11,25 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    userInfo();
+  }
+
+  String username = 'Loading...';
+  String email = 'Loading...';
+  void userInfo() async{
+
+    Map userData = await getUserInfo();
+    setState(() {
+      username = userData['username'];
+      email = userData['email'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +37,7 @@ class _SettingsState extends State<Settings> {
         child: Column(
           children: <Widget>[
             Expanded(
-              flex: 2,
+              flex: 1,
               child: Container(
                 color: lightblueColor,
                 padding: EdgeInsets.all(20),
@@ -29,11 +52,14 @@ class _SettingsState extends State<Settings> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          'Isaac Tong',
+                          username,
                           style: TextStyle(
                             fontFamily: 'Lato',
                             fontWeight: FontWeight.bold,
@@ -42,39 +68,18 @@ class _SettingsState extends State<Settings> {
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'isaact943@outlook.com',
-                          style: TextStyle(
-                            fontFamily: 'Lato',
-                            color: darkblueColor,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      height: 3,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          child: Text(
-                            '50 Posts',
-                            style: TextStyle(
-                              fontFamily: 'Lato',
-                              color: Colors.deepOrangeAccent,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
-                          ),
-                          margin: EdgeInsets.only(top: 10),
-                          padding: EdgeInsets.symmetric(vertical: 6, horizontal: 60),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(30),
-                            ),
-                            color: gradientColor,
+                        Text(
+                          email,
+                          style: TextStyle(
+                            fontFamily: 'Lato',
+                            color: darkblueColor,
+                            fontSize: 15,
                           ),
                         ),
                       ],
@@ -106,7 +111,7 @@ class _SettingsState extends State<Settings> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Text(
-                      'Contributors',
+                      'Creators',
                       style: TextStyle(
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.bold,
@@ -147,28 +152,45 @@ class _SettingsState extends State<Settings> {
             ),
             Expanded(
               child: Column(
+
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  GestureDetector(
-                    onTap: () async {
-                    },
-                    child: Container(
-                      margin: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: darkblueColor,
-                        borderRadius: BorderRadius.all(Radius.circular(100)),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          'Logout',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'Lato',
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 30,
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.deepOrangeAccent,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    margin: EdgeInsets.all(20),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        onTap: () async {
+                          //Remove token from shared preferences
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          prefs.remove('token');
+
+                          //Navigate to the login page
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => LoginScreen()),
+                                (Route<dynamic> route) => false,
+                          );
+                        },
+                        child: Container(
+                          child: Padding(
+                            padding: EdgeInsets.all(12),
+                            child: Text(
+                              'Logout',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Lato',
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 25,
+                              ),
+                            ),
                           ),
                         ),
                       ),

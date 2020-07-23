@@ -5,6 +5,8 @@ import 'package:selectionphobiamobile/constants.dart';
 import 'package:selectionphobiamobile/networking/login.dart';
 import 'package:selectionphobiamobile/screens/homepage_screen.dart';
 import 'package:selectionphobiamobile/screens/createAccount.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -20,6 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String username = null;
   String password = null;
   bool _visible = false;
+  bool _loadingVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +38,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     children: <Widget>[
                       Image(
-                        height: 150,
-                        image: AssetImage('assets/images/yes-or-no.png')
+                        height: 160,
+                        image: AssetImage('assets/images/login.png')
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 15,
                   ),
                   Row(
                     children: <Widget>[
@@ -46,8 +52,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         'Login',
                         style: TextStyle(
                           fontFamily: 'Lato',
+                          color: pinkColor,
                           fontWeight: FontWeight.w900,
-                          fontSize: 50,
+                          fontSize: 45,
                         ),
                       ),
                     ],
@@ -73,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     cursorColor: pinkColor,
                     decoration: InputDecoration(
                       labelText: 'Username',
-                      focusColor: Colors.red,
+                      focusColor: Colors.redAccent,
                       labelStyle: TextStyle(
                         color: Colors.black,
                         fontFamily: 'Lato',
@@ -115,20 +122,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Text(
-                        'Forgot your password?',
-                        style: TextStyle(
-                          color: pinkColor,
-                          fontFamily: 'Lato',
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -137,16 +130,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: <Widget>[
                       Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
                           color: pinkColor,
                         ),
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
                             onTap: () async {
                               //Send to networking page
                               try{
+                                setState(() {
+                                  _loadingVisible = true;
+                                  Future.delayed(const Duration(milliseconds: 3000), () {
+                                    setState(() {
+                                      _loadingVisible = false;
+                                    });
+                                  });
+                                });
                                 await loginPost(username, password);
                                 Navigator.pushAndRemoveUntil(
                                   context,
@@ -154,7 +155,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                       (Route<dynamic> route) => false,
                                 );
                               }catch(e){
-                                print('error');
                                 setState(() {
                                   _visible = true;
                                   Future.delayed(const Duration(milliseconds: 3000), () {
@@ -172,13 +172,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Padding(
                                 padding: EdgeInsets.all(12),
                                 child: Text(
-                                  'Login',
+                                  'login',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: 'Lato',
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 30,
+                                    fontSize: 25,
                                   ),
                                 ),
                               ),
@@ -188,8 +188,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 20,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        height: 25,
+                        child: AnimatedOpacity(
+                          opacity: _loadingVisible?1:0,
+                          duration: Duration(milliseconds: 200),
+                          child: LoadingIndicator(indicatorType: Indicator.ballPulse, color: pinkColor,),
+                        ),
+                      ),
+                    ],
                   ),
                   FlatButton(
                     onPressed: () {

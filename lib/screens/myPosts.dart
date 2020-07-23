@@ -13,6 +13,7 @@ class _MyPostsPageState extends State<MyPostsPage> {
   Map questionMap;
   int postCount = 10;
   bool hasLoaded = false;
+  bool noPosts = false;
 
   @override
   void initState() {
@@ -23,6 +24,14 @@ class _MyPostsPageState extends State<MyPostsPage> {
 
   void buildQuestionCards() async {
     questionMap = await getMyPosts();
+    if(questionMap['questions'].length == 0){
+      setState(() {
+        noPosts = true;
+        postCount = 1;
+        hasLoaded = true;
+      });
+      return;
+    };
     setState(() {
       hasLoaded = true;
       postCount = questionMap['questions'].length;
@@ -187,6 +196,19 @@ class _MyPostsPageState extends State<MyPostsPage> {
                                     ),
                                   ],
                                 ),
+                              ),
+                            ),
+                          );
+                        }
+                        if(noPosts == true){
+                          return Container(
+                            child: Text(
+                              'You have no posts',
+                              style: TextStyle(
+                                fontFamily: 'Lato',
+                                color: Colors.deepOrangeAccent,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
                               ),
                             ),
                           );

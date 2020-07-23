@@ -20,6 +20,7 @@ class _MyPostPageViewState extends State<MyPostPageView> {
   Map questionMap;
   var initialVar;
   int initCount = 3;
+  bool isEmpty = false;
   //CALL WHEN INIT STATE
   @override
   void initState() {
@@ -34,7 +35,15 @@ class _MyPostPageViewState extends State<MyPostPageView> {
   Widget build(BuildContext context) {
 
     if(widget.initialVar != null){
-      initCount = widget.initialVar['questions'].length;
+      if(widget.initialVar['questions'].length == 0){
+        print(isEmpty);
+        initCount = 1;
+        isEmpty = true;
+      }else{
+        initCount = widget.initialVar['questions'].length;
+        isEmpty = false;
+      }
+
 
     }
 
@@ -43,12 +52,60 @@ class _MyPostPageViewState extends State<MyPostPageView> {
         scrollDirection: Axis.horizontal,
         itemCount: initCount,
         itemBuilder: (BuildContext context, int itemIndex) {
+          if(isEmpty == true){
+            return Container(
+              margin: EdgeInsets.fromLTRB(0, 5, 5, 5),
+              width: 180,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                color: lightblueColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.04),
+                    spreadRadius: 4,
+                    blurRadius: 20,
+                    offset: Offset(4,
+                        4), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        'You have not created any posts',
+                        style: TextStyle(
+                          fontFamily: 'Lato',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: darkblueColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
           return Container(
-            margin: EdgeInsets.all(5),
+            margin: EdgeInsets.fromLTRB(0, 5, 10, 5),
             width: 180,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(8)),
               color: lightblueColor,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.04),
+                  spreadRadius: 4,
+                  blurRadius: 20,
+                  offset: Offset(4,
+                      4), // changes position of shadow
+                ),
+              ],
             ),
             child: Material(
               color: Colors.transparent,

@@ -51,6 +51,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<Null> refreshPage() async {
     questionMap = await recentQuestionsGet();
+    buildNewList();
     setState(() {
       initialVar = questionMap;
     });
@@ -122,15 +123,21 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        IconButton(
-                          icon: Icon(Icons.settings),
-                          color: darkGreyColor,
-                          onPressed: () {
+                        InkWell(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => Settings()),
                             );
                           },
+                          child: Container(
+                            margin: EdgeInsets.all(5),
+                            child: Icon(
+                              Icons.settings,
+                              color: darkGreyColor,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -231,19 +238,21 @@ class _HomePageState extends State<HomePage> {
                           });
                         },
                         children: <Widget>[
-                          ListView.builder(
-                            itemCount: newListCount,
-                            itemBuilder: (BuildContext context, int index) {
-                              if (newMap == null) {
-                                return Container(
-                                  margin: EdgeInsets.fromLTRB(0, 0, 15, 20),
-                                  child: Container(
-                                    padding: EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(8)),
-                                      boxShadow: [
+                          RefreshIndicator(
+                            onRefresh: refreshPage,
+                            child: ListView.builder(
+                              itemCount: newListCount,
+                              itemBuilder: (BuildContext context, int index) {
+                                if (newMap == null) {
+                                  return Container(
+                                    margin: EdgeInsets.fromLTRB(0, 0, 15, 20),
+                                    child: Container(
+                                      padding: EdgeInsets.all(20),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(8)),
+                                        boxShadow: [
                                         BoxShadow(
                                           color: Colors.grey.withOpacity(0.12),
                                           spreadRadius: 4,
@@ -252,133 +261,134 @@ class _HomePageState extends State<HomePage> {
                                               4), // changes position of shadow
                                         ),
                                       ],
+                                      ),
+                                      child: Shimmer.fromColors(
+                                        baseColor: Colors.grey[200],
+                                        highlightColor: Colors.grey[300],
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Column(
+                                              children: <Widget>[
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(7)),
+                                                  ),
+                                                  width: 100,
+                                                  height: 15,
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: <Widget>[
+                                                Icon(
+                                                  Icons.poll,
+                                                  color: Colors.deepOrangeAccent,
+                                                ),
+                                                SizedBox(
+                                                  width: 8,
+                                                ),
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(7)),
+                                                  ),
+                                                  width: 30,
+                                                  height: 15,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                    child: Shimmer.fromColors(
-                                      baseColor: Colors.grey[200],
-                                      highlightColor: Colors.grey[300],
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Column(
-                                            children: <Widget>[
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: Colors.grey,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(7)),
+                                  );
+                                }
+
+                                String title = newMap['title'][index]['title'];
+                                String totalVotes = newMap['title'][index]
+                                        ['totalVotes']
+                                    .toString();
+                                String _id = newMap['title'][index]['_id'];
+                                return Container(
+                                  margin: EdgeInsets.fromLTRB(0, 0, 15, 20),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.12),
+                                        spreadRadius: 4,
+                                        blurRadius: 10,
+                                        offset: Offset(
+                                            4, 4), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.circular(8),
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  VoteScreen(_id)),
+                                        );
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.all(20),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Flexible(
+                                              child: Text(
+                                                title,
+                                                style: TextStyle(
+                                                  fontFamily: 'Lato',
+                                                  fontSize: 15,
                                                 ),
-                                                width: 100,
-                                                height: 15,
                                               ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons.remove_red_eye,
-                                                color: Colors.deepOrangeAccent,
-                                              ),
-                                              SizedBox(
-                                                width: 8,
-                                              ),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(7)),
+                                            ),
+                                            SizedBox(
+                                              width: 8,
+                                            ),
+                                            Row(
+                                              children: <Widget>[
+                                                Icon(
+                                                  Icons.poll,
+                                                  color: Colors.deepOrangeAccent,
                                                 ),
-                                                width: 30,
-                                                height: 15,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                SizedBox(
+                                                  width: 8,
+                                                ),
+                                                Text(
+                                                  totalVotes,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Lato',
+                                                      fontSize: 15,
+                                                      color: Colors
+                                                          .deepOrangeAccent),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 );
-                              }
-
-                              String title = newMap['title'][index]['title'];
-                              String totalVotes = newMap['title'][index]
-                                      ['totalVotes']
-                                  .toString();
-                              String _id = newMap['title'][index]['_id'];
-                              return Container(
-                                margin: EdgeInsets.fromLTRB(0, 0, 15, 20),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(8)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.12),
-                                      spreadRadius: 4,
-                                      blurRadius: 10,
-                                      offset: Offset(
-                                          4, 4), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    borderRadius: BorderRadius.circular(8),
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                VoteScreen(_id)),
-                                      );
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.all(20),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Flexible(
-                                            child: Text(
-                                              title,
-                                              style: TextStyle(
-                                                fontFamily: 'Lato',
-                                                fontSize: 15,
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 8,
-                                          ),
-                                          Row(
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons.poll,
-                                                color: Colors.deepOrangeAccent,
-                                              ),
-                                              SizedBox(
-                                                width: 8,
-                                              ),
-                                              Text(
-                                                totalVotes,
-                                                style: TextStyle(
-                                                    fontFamily: 'Lato',
-                                                    fontSize: 15,
-                                                    color: Colors
-                                                        .deepOrangeAccent),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
+                              },
+                            ),
                           ),
                           ListView(
                             padding: EdgeInsets.only(right: 15),
