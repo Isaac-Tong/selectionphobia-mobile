@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<Map> fetchTags(String queryField, String fetchCount) async {
+dynamic fetchTags(String queryField, String fetchCount) async {
 
   //Get the token from shared preferences
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -23,6 +23,11 @@ Future<Map> fetchTags(String queryField, String fetchCount) async {
       'http://10.0.2.2:5000/tags',
       headers: headerMap,
   );
+
+  //Reached the end of the query stream
+  if(res.statusCode == 204){
+    return false;
+  }
 
   //Decode data to a map
   Map responseMap = json.decode(res.body);

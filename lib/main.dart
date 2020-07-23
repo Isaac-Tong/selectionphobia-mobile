@@ -21,8 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Selection Phobia',
-      home: TagsPage('Lifestyle'),
+      home: HomePage(),
     );
   }
 }
 
+//TagsPage('Lifestyle')

@@ -17,6 +17,7 @@ class _TagsPageState extends State<TagsPage> {
   ScrollController _scrollController = new ScrollController();
 
   int fetchCount = 0;
+  bool streamEnd = false;
 
   //Arrays
   List totalVotes = [];
@@ -31,7 +32,6 @@ class _TagsPageState extends State<TagsPage> {
     super.initState();
     _scrollController.addListener(() {
       if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
-        print('Hit the end');
         setState(() {
           fetchCount += 10;
           fetchTen();
@@ -49,8 +49,14 @@ class _TagsPageState extends State<TagsPage> {
   }
 
   void fetchTen() async{
-    Map tagResponse = await fetchTags('Lifestyle', fetchCount.toString());
+    var tagResponse = await fetchTags(widget.queryField, fetchCount.toString());
 
+    if(tagResponse == false){
+      setState(() {
+        streamEnd = true;
+      });
+      return;
+    }
     setState(() {
       //Push to each field's list
       for(int i = 0; i < tagResponse['questions'].length; i++){
@@ -61,12 +67,9 @@ class _TagsPageState extends State<TagsPage> {
         tags.add(tagResponse['questions'][i]['tags']);
 
       }
-
       //Set hasLoaded as true
       hasLoaded = true;
-
     });
-
 
   }
 
@@ -88,7 +91,7 @@ class _TagsPageState extends State<TagsPage> {
                     style: TextStyle(
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.bold,
-                      color: greyColor,
+                      color: darkblueColor,
                       fontSize: 30,
                     ),
                   ),
@@ -100,10 +103,11 @@ class _TagsPageState extends State<TagsPage> {
             Expanded(
               child: ListView.builder(
                   controller: _scrollController,
-                  itemCount: totalVotes.length,
+                  itemCount: totalVotes.length + 1,
                   itemBuilder: (context, index){
+
+
                     if(hasLoaded == false) {
-                      print('hello');
                       return Container(
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
                         decoration: BoxDecoration(
@@ -225,16 +229,18 @@ class _TagsPageState extends State<TagsPage> {
                       );
                     }
 
-//                    if(index == totalVotes.length - 1){
-//                      return Padding(
-//                        padding: EdgeInsets.only(bottom: 15),
-//                        child: Center(
-//                          child: CircularProgressIndicator(
-//                            valueColor: new AlwaysStoppedAnimation<Color>(Colors.deepOrangeAccent),
-//                          ),
-//                        ),
-//                      );
-//                    }
+                    if(index == totalVotes.length){
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 15),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            valueColor: new AlwaysStoppedAnimation<Color>(Colors.deepOrangeAccent),
+                          ),
+                        ),
+                      );
+                    }
+
+
 
                     String _title = title[index];
                     String _id = id[index];
