@@ -24,6 +24,7 @@ const gradientColor = Color(0xffF1F5FA);
 //Opaque Colours
 const opaquelightLightBlueColor = Color(0x9969DBF5);
 const opaquegradientColor = Color(0xaaF1F5FA);
+const lightOrange = Color(0xffFFF0EC);
 
 //Grey
 const darkGreyColor = Color(0xff707070);
