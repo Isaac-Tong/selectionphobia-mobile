@@ -20,7 +20,7 @@ dynamic fetchTags(String queryField, String fetchCount) async {
 
 //  Post the data to backend
   http.Response res = await http.post(
-      'http://10.0.2.2:5000/tags',
+      'https://selectionphobia.azurewebsites.net/tags',
       headers: headerMap,
   );
 

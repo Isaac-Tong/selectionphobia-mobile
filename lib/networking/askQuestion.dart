@@ -19,7 +19,7 @@ void askQuestion(String question, String description, List cards, String tag) as
 
 //  Post the data to backend
   http.Response res = await http.post(
-    'http://10.0.2.2:5000/ask',
+    'https://selectionphobia.azurewebsites.net/ask',
     headers: headerMap,
       body: jsonEncode({
         'title': question,

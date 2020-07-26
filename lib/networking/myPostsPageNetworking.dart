@@ -17,7 +17,7 @@ Future<Map> getMyPosts() async {
   };
 
   //Store http response to res
-  http.Response res = await http.get('http://10.0.2.2:5000/myQuestions/compact', headers: headerMap);
+  http.Response res = await http.get('https://selectionphobia.azurewebsites.net/myQuestions/compact', headers: headerMap);
 
   Map questionMap = json.decode(res.body);
   return questionMap;

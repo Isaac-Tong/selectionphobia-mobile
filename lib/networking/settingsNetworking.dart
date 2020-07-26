@@ -18,7 +18,7 @@ Future<Map> getUserInfo() async {
 
 //  Post the data to backend
   http.Response res = await http.get(
-    'http://10.0.2.2:5000/userInfo',
+    'https://selectionphobia.azurewebsites.net/userInfo',
     headers: headerMap,
   );
 

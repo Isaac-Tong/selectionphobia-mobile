@@ -18,7 +18,7 @@ Future newQuestion() async {
 
   //Post the data to backend
   http.Response res = await http.get(
-      'http://10.0.2.2:5000/new',
+      'https://selectionphobia.azurewebsites.net/new',
       headers: headerMap,
   );
   Map newMap = json.decode(res.body);

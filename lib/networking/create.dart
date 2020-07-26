@@ -22,7 +22,7 @@ void createPost(String user, String pass, String email) async {
   user = user.replaceAll(' ', '');
 
   var res = await http.post(
-    'http://10.0.2.2:5000/registration',
+    'https://selectionphobia.azurewebsites.net/registration',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'platform': 'mobile',

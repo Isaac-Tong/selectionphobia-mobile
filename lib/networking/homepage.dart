@@ -18,7 +18,7 @@ Future<Map> recentQuestionsGet() async {
 
   print(token);
   //Store http response to res
-  http.Response res = await http.get('http://10.0.2.2:5000/myQuestions/mobilehomepage', headers: headerMap);
+  http.Response res = await http.get('https://selectionphobia.azurewebsites.net/myQuestions/mobilehomepage', headers: headerMap);
 
   Map questionMap = json.decode(res.body);
   return questionMap;

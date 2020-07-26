@@ -19,7 +19,7 @@ Future<Map> getQuestionById(String questionID) async {
 
   // Post the data to backend
   http.Response res = await http.post(
-      'http://10.0.2.2:5000/question/mobile',
+      'https://selectionphobia.azurewebsites.net/question/mobile',
       headers: headerMap,
       body: jsonEncode({
         'questionID': questionID,
@@ -44,7 +44,7 @@ Future<int> voteUnvote(String questionId, int optionId) async{
 
   // Post the data to backend
   http.Response res = await http.post(
-      'http://10.0.2.2:5000/question/voteUnvote',
+      'https://selectionphobia.azurewebsites.net/question/voteUnvote',
       headers: headerMap,
       body: jsonEncode({
         'questionId': questionId,
@@ -72,7 +72,7 @@ Future<int> vote(String questionId, int optionId) async{
 
   // Post the data to backend
   http.Response res = await http.post(
-      'http://10.0.2.2:5000/question/mobile/vote',
+      'https://selectionphobia.azurewebsites.net/question/mobile/vote',
       headers: headerMap,
       body: jsonEncode({
         'questionId': questionId,
@@ -98,7 +98,7 @@ Future<int> unvote(String questionId, int optionId) async{
 
   // Post the data to backend
   http.Response res = await http.post(
-      'http://10.0.2.2:5000/question/mobile/unvote',
+      'https://selectionphobia.azurewebsites.net/question/mobile/unvote',
       headers: headerMap,
       body: jsonEncode({
         'questionId': questionId,

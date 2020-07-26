@@ -12,7 +12,7 @@ void loginPost(String user, String pass) async {
   user = user.replaceAll(' ', '');
 
   var res = await http.post(
-    'http://10.0.2.2:5000/login',
+    'https://selectionphobia.azurewebsites.net/login',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'platform': 'mobile',
