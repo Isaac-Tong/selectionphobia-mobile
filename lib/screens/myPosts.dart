@@ -56,7 +56,7 @@ class _MyPostsPageState extends State<MyPostsPage> {
                     style: TextStyle(
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.bold,
-                      color: greyColor,
+                      color: darkGreyColor,
                       fontSize: 30,
                     ),
                   ),
@@ -264,7 +264,7 @@ class _MyPostsPageState extends State<MyPostsPage> {
                                   style: TextStyle(
                                     fontFamily: 'Lato',
                                     fontWeight: FontWeight.normal,
-                                    color: Colors.grey,
+                                    color: darkGreyColor,
                                   ),
                                 ),
                               ),
@@ -277,7 +277,7 @@ class _MyPostsPageState extends State<MyPostsPage> {
                                   Container(
                                     padding: EdgeInsets.all(6),
                                     decoration: BoxDecoration(
-                                      color: Colors.grey,
+                                      color: darkGreyColor,
                                       borderRadius: BorderRadius.circular(9),
                                     ),
                                     child: Text(
@@ -371,7 +371,7 @@ class _MyPostsPageState extends State<MyPostsPage> {
                                     style: TextStyle(
                                       fontFamily: 'Lato',
                                       fontWeight: FontWeight.normal,
-                                      color: Colors.grey,
+                                      color: darkGreyColor,
                                     ),
                                   ),
                                 ),
@@ -384,7 +384,7 @@ class _MyPostsPageState extends State<MyPostsPage> {
                                     Container(
                                       padding: EdgeInsets.all(6),
                                       decoration: BoxDecoration(
-                                        color: Colors.grey,
+                                        color: darkGreyColor,
                                         borderRadius: BorderRadius.circular(9),
                                       ),
                                       child: Text(
