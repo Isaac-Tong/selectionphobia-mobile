@@ -4,6 +4,7 @@ import 'package:selectionphobiamobile/networking/create.dart';
 import 'package:selectionphobiamobile/screens/homepage_screen.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -55,7 +56,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       AnimatedOpacity(
-                        opacity: _visible?1:0,
+                        opacity: _visible ? 1 : 0,
                         duration: Duration(milliseconds: 200),
                         child: Text(
                           error,
@@ -85,7 +86,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         borderSide: BorderSide(color: darkblueColor),
                       ),
                     ),
-                    onChanged:(String value){
+                    onChanged: (String value) {
                       username = value;
                     },
                   ),
@@ -109,7 +110,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         borderSide: BorderSide(color: darkblueColor),
                       ),
                     ),
-                    onChanged:(String value){
+                    onChanged: (String value) {
                       email = value;
                     },
                   ),
@@ -134,12 +135,52 @@ class _CreateAccountState extends State<CreateAccount> {
                         borderSide: BorderSide(color: darkblueColor),
                       ),
                     ),
-                    onChanged:(String value){
+                    onChanged: (String value) {
                       password = value;
                     },
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 15,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Flexible(
+                        child: InkWell(
+                          onTap: () async{
+                            const url = "https://isaac-tong.github.io/selection_phobia_privacypolicy/";
+                            if (await canLaunch(url)) {
+                            await launch(url);
+                            } else {
+                            throw 'Could not launch $url';
+                            }
+                          },
+                          borderRadius: BorderRadius.circular(3),
+                          child: RichText(
+                            text: TextSpan(
+                                style: new TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'Lato',
+                                  color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                      text:
+                                          "By creating your account you agree to our "),
+                                  TextSpan(
+                                    text: "Terms of Service and Privacy Policy",
+                                    style: TextStyle(
+                                        color: darkblueColor,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ]),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -154,10 +195,11 @@ class _CreateAccountState extends State<CreateAccount> {
                           child: InkWell(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             onTap: () async {
-                              try{
+                              try {
                                 setState(() {
                                   _loadingVisible = true;
-                                  Future.delayed(const Duration(milliseconds: 3000), () {
+                                  Future.delayed(
+                                      const Duration(milliseconds: 3000), () {
                                     setState(() {
                                       _loadingVisible = false;
                                     });
@@ -166,22 +208,24 @@ class _CreateAccountState extends State<CreateAccount> {
                                 await createPost(username, password, email);
                                 Navigator.pushAndRemoveUntil(
                                   context,
-                                  MaterialPageRoute(builder: (context) => HomePage()),
-                                      (Route<dynamic> route) => false,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomePage()),
+                                  (Route<dynamic> route) => false,
                                 );
-                              }catch(e){
-                                if(mounted){
+                              } catch (e) {
+                                if (mounted) {
                                   setState(() {
                                     error = e;
                                     _visible = true;
-                                    Future.delayed(const Duration(milliseconds: 3000), () {
+                                    Future.delayed(
+                                        const Duration(milliseconds: 3000), () {
                                       setState(() {
                                         _visible = false;
                                       });
                                     });
                                   });
                                 }
-                                }
+                              }
                             },
                             child: Container(
                               child: Padding(
@@ -209,9 +253,12 @@ class _CreateAccountState extends State<CreateAccount> {
                       Container(
                         height: 25,
                         child: AnimatedOpacity(
-                          opacity: _loadingVisible?1:0,
+                          opacity: _loadingVisible ? 1 : 0,
                           duration: Duration(milliseconds: 200),
-                          child: LoadingIndicator(indicatorType: Indicator.ballPulse, color: darkblueColor,),
+                          child: LoadingIndicator(
+                            indicatorType: Indicator.ballPulse,
+                            color: darkblueColor,
+                          ),
                         ),
                       ),
                     ],

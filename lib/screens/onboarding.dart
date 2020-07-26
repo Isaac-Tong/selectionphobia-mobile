@@ -10,38 +10,6 @@ class OnBoard extends StatefulWidget {
 }
 
 class _OnBoardState extends State<OnBoard> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    tokenCheck();
-  }
-
-  void tokenCheck() async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    //Check to see if it is the first time launching the app;
-    bool active = prefs.getBool('new');
-
-    //Will be null if it is the first time
-    //Will be true if it is not the first time. Then we must check if user has logged in or not.
-    if(active != null){
-      //Check if user has token stored
-      var token = prefs.getString('token');
-      if(token != null){
-        Navigator.of(context).pushReplacement(
-            new MaterialPageRoute(builder: (context) => new HomePage()));
-        return;
-      }
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new LoginScreen()));
-      return;
-    }
-
-    //Then it is the first time that the user has run the app
-    prefs.setBool('new', true);
-  }
-
 
   @override
   Widget build(BuildContext context) {
