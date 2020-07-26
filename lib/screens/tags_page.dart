@@ -279,7 +279,7 @@ class _TagsPageState extends State<TagsPage> {
                               style: TextStyle(
                                 fontFamily: 'Lato',
                                 fontWeight: FontWeight.normal,
-                                color: Colors.grey,
+                                color: darkGreyColor,
                               ),
                             ),
                           ),
@@ -369,7 +369,7 @@ class _TagsPageState extends State<TagsPage> {
                                 style: TextStyle(
                                   fontFamily: 'Lato',
                                   fontWeight: FontWeight.normal,
-                                  color: Colors.grey,
+                                  color: darkGreyColor,
                                 ),
                               ),
                             ),
@@ -382,7 +382,7 @@ class _TagsPageState extends State<TagsPage> {
                                 Container(
                                   padding: EdgeInsets.all(6),
                                   decoration: BoxDecoration(
-                                    color: Colors.grey,
+                                    color: darkGreyColor,
                                     borderRadius: BorderRadius.circular(9),
                                   ),
                                   child: Text(

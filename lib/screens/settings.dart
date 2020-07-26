@@ -111,7 +111,7 @@ class _SettingsState extends State<Settings> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Text(
-                      'Creators',
+                      'Developers',
                       style: TextStyle(
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.bold,
@@ -119,28 +119,28 @@ class _SettingsState extends State<Settings> {
                       ),
                     ),
                     Text(
-                      'Isaac Tong',
+                      'Isaac Tong (Mobile, Frontend, Backend)',
                       style: TextStyle(
                         fontFamily: 'Lato',
                         color: darkblueColor,
                       ),
                     ),
                     Text(
-                      'Tom Jiao',
+                      'Tom Jiao (Frontend, Backend)',
                       style: TextStyle(
                         fontFamily: 'Lato',
                         color: darkblueColor,
                       ),
                     ),
                     Text(
-                      'David Yei',
+                      'David Yei (Frontend, Backend)',
                       style: TextStyle(
                         fontFamily: 'Lato',
                         color: darkblueColor,
                       ),
                     ),
                     Text(
-                      'Andrew Liu',
+                      'Andrew Liu (Frontend)',
                       style: TextStyle(
                         fontFamily: 'Lato',
                         color: darkblueColor,
