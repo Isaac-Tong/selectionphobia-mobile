@@ -10,6 +10,13 @@ Selection Phobia is a social networking site that helps people with indecisive t
 ![Homepage](https://github.com/Isaac-Tong/selectionphobia-mobile/blob/master/readme/Showcase_1.png)
 
 
+![Loginpages](https://github.com/Isaac-Tong/selectionphobia-mobile/blob/master/readme/Showcase_2.png)
+
+
+
+
+
+
 
 
 
@@ -22,6 +29,5 @@ The aim of the mobile app expere
 
 
 ## Privacy Policy
-To comply with relevant privacy laws, a [website that describes my privacy policy](https://isaac-tong.github.io/selection_phobia_privacypolicy/) (hosted on GitHub Pages) is created. 
-
+To comply with relevant privacy laws, a [website](https://isaac-tong.github.io/selection_phobia_privacypolicy/) that describes my privacy policy (hosted on GitHub Pages) is created. It can be accessed with the link below.
 https://isaac-tong.github.io/selection_phobia_privacypolicy/
