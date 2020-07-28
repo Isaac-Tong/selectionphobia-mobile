@@ -10,7 +10,7 @@ Selection Phobia is a social networking site that helps people with indecisive t
 ![Homepage](https://github.com/Isaac-Tong/selectionphobia-mobile/blob/master/readme/Showcase_1.png)
 
 
-![Loginpages](https://github.com/Isaac-Tong/selectionphobia-mobile/blob/master/readme/Showcase_2.png)
+![Loginpages](https://github.com/Isaac-Tong/selectionphobia-mobile/blob/master/readme/Showcase_2.png =250x)
 
 
 
