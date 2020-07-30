@@ -5,7 +5,7 @@ Repository for the mobile app portion of the Selection Phobia web application.
 ![Demo_Gif](https://github.com/Isaac-Tong/selectionphobia-mobile/blob/master/readme/showcase_gif.gif)
 
 ## Published on the Playstore!
-![https://play.google.com/store/apps/details?id=com.isaactong.selectionphobiamobile](https://play.google.com/store/apps/details?id=com.isaactong.selectionphobiamobile)
+https://play.google.com/store/apps/details?id=com.isaactong.selectionphobiamobile
 
 
 ## Overview the Project
