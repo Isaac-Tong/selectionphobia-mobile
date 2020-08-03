@@ -1,7 +1,6 @@
 # Selection Phobia App (iOS & Android)
 Repository for the mobile app portion of the Selection Phobia web application.
 
-## Demo (Running on Android)
 ![Demo_Gif](https://github.com/Isaac-Tong/selectionphobia-mobile/blob/master/readme/showcase_gif.gif)
 
 ## Published on the Playstore!
